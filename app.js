@@ -182,13 +182,15 @@
   });
   const musicUrl = safeUrl(config.musicUrl);
   if (musicUrl) {
-    const music = new Audio(musicUrl); music.loop = true; music.preload = 'none'; music.volume = .35;
+    const music = new Audio(musicUrl); music.loop = true; music.preload = 'auto'; music.volume = .35;
     const button = $('#music-toggle'); button.hidden = false;
     function musicState(playing) {
       button.setAttribute('aria-pressed', String(playing));
       button.setAttribute('aria-label', playing ? 'Tắt nhạc nền' : 'Bật nhạc nền');
       button.textContent = playing ? 'Ⅱ' : '♫';
     }
+    music.addEventListener('play', () => musicState(true));
+    music.addEventListener('pause', () => musicState(false));
     music.addEventListener('error', () => { musicState(false); toast('Chưa tải được nhạc nền.'); });
     button.addEventListener('click', async () => {
       musicInteracted = true;
@@ -196,16 +198,17 @@
       await playMusic();
     });
     let musicInteracted = false;
-    async function playMusic() {
-      try { await music.play(); musicState(true); }
-      catch { musicState(false); toast('Bấm nút ♫ để bật nhạc nhé.'); }
+    async function playMusic(silent = false) {
+      try { await music.play(); }
+      catch { if (!silent) toast('Bấm nút ♫ để bật nhạc nhé.'); }
     }
-    function playOnOpen() {
-      if (musicInteracted) return;
+    function playOnFirstInteraction() {
+      if (musicInteracted || !music.paused) return;
       musicInteracted = true;
       void playMusic();
     }
-    $('#hero-open').addEventListener('click', playOnOpen);
-    $('#envelope-open').addEventListener('click', playOnOpen);
+    document.addEventListener('click', playOnFirstInteraction, { once: true });
+    document.addEventListener('keydown', playOnFirstInteraction, { once: true });
+    void playMusic(true);
   }
 })();

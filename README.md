@@ -15,7 +15,7 @@ Chuẩn bị `_site/` theo phần **Ảnh mẫu và chạy thử** bên dưới 
 Sửa `config.js`: tên, chữ viết tắt, trường, thời gian ISO có múi giờ `+07:00`, địa điểm, link Maps và lời nhắn. Thời gian hiển thị luôn theo Việt Nam dù khách đang ở nước khác. `durationMinutes` là thời lượng dùng khi lưu lịch (mặc định 120 phút, chỉnh theo buổi lễ thực tế).
 
 - **Ảnh cá nhân:** đặt ảnh vào `assets/`, gán `portraitUrl: 'assets/portrait.jpg'`. Khối ảnh chỉ hiện khi có ảnh; nên dùng ảnh WebP/JPEG dưới 500 KB.
-- **Nhạc:** đặt file vào `music/` và gán `musicUrl` (hiện dùng `music/Cosmic Echoes.mp3`). Nhạc phát nền, âm lượng 35%, lặp lại khi khách mở thiệp. Nút ♫/Ⅱ bật hoặc tạm dừng nhạc; lựa chọn tắt nhạc của khách được giữ khi mở thiệp lần nữa.
+- **Nhạc:** đặt file vào `music/` và gán `musicUrl` (hiện dùng `music/Cosmic Echoes.mp3`). Nhạc phát nền, âm lượng 35%, lặp lại và tự phát khi vào trang; nếu trình duyệt chặn tự phát, nhạc bật sau lần chạm hoặc nhấn phím đầu tiên. Nút ♫/Ⅱ bật hoặc tạm dừng nhạc; lựa chọn tắt nhạc của khách được giữ khi mở thiệp lần nữa.
 - **Xác nhận tham dự:** tạo Google Forms với tên và lựa chọn tham dự, rồi gán link người trả lời vào `rsvpUrl`. Khi chưa có link, thiệp mời khách nhắn trực tiếp; website không tự thu thập hay lưu phản hồi.
 - Thẻ mô tả và nội dung `<noscript>` trong `index.html` là dự phòng cho trình thu thập và thiết bị tắt JavaScript; cập nhật chúng khi thay đổi buổi lễ.
 
