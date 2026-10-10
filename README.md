@@ -41,7 +41,7 @@ Workflow chỉ đóng gói file giao diện công khai, `assets/`, `memes/` và 
 
 ## Trải nghiệm
 
-Phong bì tương tác, pháo giấy khi mở, nội dung xuất hiện khi cuộn, đồng hồ đếm ngược, link Maps, tải lịch `.ics`, link cá nhân hóa và hỗ trợ giảm chuyển động. Ảnh và nhạc là tùy chọn. Font tải từ Google Fonts, có font hệ thống dự phòng; các tương tác cơ bản chạy bằng JavaScript thuần; video gửi xe dùng trình phát Facebook.
+Mở trang là thấy ngay thư mời; các phần bên dưới xuất hiện khi cuộn, đồng hồ đếm ngược, link Maps, tải lịch `.ics`, link cá nhân hóa và hỗ trợ giảm chuyển động. Ảnh và nhạc là tùy chọn. Font tải từ Google Fonts, có font hệ thống dự phòng; các tương tác cơ bản chạy bằng JavaScript thuần; video gửi xe dùng trình phát Facebook.
 
 ## Bản đồ khuôn viên và hướng dẫn gửi xe
 

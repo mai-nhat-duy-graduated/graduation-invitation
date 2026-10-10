@@ -35,15 +35,11 @@
     $('#event-day').textContent = format({ day: '2-digit' });
     $('#event-weekday').textContent = format({ weekday: 'long' });
     $('#event-time').textContent = `${format({ hour: '2-digit', minute: '2-digit', hour12: false })} · Giờ bắt đầu`;
-    $('.hero-date > span:nth-child(2)').textContent = format({ day: '2-digit', month: '2-digit', year: 'numeric' }).replaceAll('/', ' / ');
-    $('.paper-date').textContent = format({ day: '2-digit', month: '2-digit', year: 'numeric' }).replaceAll('/', ' . ');
   } else {
     $('#event-month').textContent = 'NGÀY TỔ CHỨC';
     $('#event-day').textContent = '—';
     $('#event-weekday').textContent = 'Sẽ cập nhật';
     $('#event-time').textContent = 'Giờ tổ chức sẽ được cập nhật';
-    $('.hero-date > span:nth-child(2)').textContent = 'Ngày tổ chức sẽ cập nhật';
-    $('.paper-date').textContent = 'HẸN GẶP BẠN';
     $('#calendar-button').hidden = true;
   }
   let countdownTimer;
@@ -67,30 +63,6 @@
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => $('#toast').classList.remove('visible'), 3500);
   }
-  let opened = false;
-  function openInvitation() {
-    $('.hero-art').classList.add('opened');
-    if (!opened && !reducedMotion) {
-      const fragment = document.createDocumentFragment();
-      for (let i = 0; i < 45; i++) {
-        const piece = document.createElement('i');
-        piece.className = 'confetti';
-        piece.style.left = `${Math.random() * 100}%`;
-        piece.style.background = ['#b89c62', '#365b46', '#d9bcb0', '#d9d9c7'][i % 4];
-        piece.style.animationDelay = `${Math.random() * .7}s`;
-        piece.style.setProperty('--drift', `${Math.random() * 220 - 110}px`);
-        fragment.append(piece);
-      }
-      $('#confetti-layer').append(fragment);
-      setTimeout(() => $('#confetti-layer').replaceChildren(), 4500);
-    }
-    opened = true;
-  }
-  $('#hero-open').addEventListener('click', openInvitation);
-  $('#envelope-open').addEventListener('click', () => {
-    openInvitation();
-    $('#invitation').scrollIntoView({ behavior: reducedMotion ? 'instant' : 'smooth' });
-  });
   if ('IntersectionObserver' in window && !reducedMotion) {
     document.documentElement.classList.add('js');
     const observer = new IntersectionObserver(entries => entries.forEach(entry => {
@@ -205,7 +177,7 @@
     function playOnFirstInteraction() {
       if (musicInteracted || !music.paused) return;
       musicInteracted = true;
-      void playMusic();
+      void playMusic(true);
     }
     document.addEventListener('click', playOnFirstInteraction, { once: true });
     document.addEventListener('keydown', playOnFirstInteraction, { once: true });
