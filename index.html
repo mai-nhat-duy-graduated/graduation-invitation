@@ -16,9 +16,38 @@
 <body>
   <a class="skip-link" href="#invitation">Đến nội dung lời mời</a>
   <main>
-    <section class="invitation-section" id="invitation" aria-labelledby="letter-title">
-      <div class="letter-heading"><p class="eyebrow">THƯ MỜI TỐT NGHIỆP</p><h2 id="letter-title">Gửi <em data-guest>bạn</em>,</h2></div>
-      <div class="letter-body"><p class="letter-lead">Mình sắp tốt nghiệp rồi!</p><p id="personal-message"></p><p>Đến chung vui, chụp một tấm ảnh, và cùng mình lưu lại một kỷ niệm nhé. Sự có mặt của bạn sẽ là món quà ý nghĩa nhất.</p><div class="signature"><span>Thân mến,</span><strong data-graduate>Mai Nhật Duy</strong><span class="signature-line"></span></div></div>
+    <section class="invitation-section is-open" id="invitation" aria-labelledby="invitation-title">
+      <div class="mail-masthead"><a class="mail-brand" href="#invitation"><span class="brand-mark" data-initials>ND</span><span data-graduate>Mai Nhật Duy</span></a><span>MỘT CỘT MỐC · MỘT LỜI MỜI</span></div>
+      <div class="mail-intro">
+        <p class="eyebrow"><span aria-hidden="true">✦</span> LỜI NHẮN DÀNH RIÊNG CHO BẠN</p>
+        <h1 id="invitation-title">Có một lá thư<br><em>đang chờ bạn.</em></h1>
+        <p>Một chút tâm tình, gửi cùng lời mời đến ngày vui của mình.</p>
+      </div>
+      <div class="mail-stage" id="mail-stage">
+        <span class="mail-spark mail-spark-one" aria-hidden="true">✧</span>
+        <span class="mail-spark mail-spark-two" aria-hidden="true">✦</span>
+        <div class="mail-envelope" aria-hidden="true">
+          <div class="mail-lining"></div>
+          <div class="mail-pocket"></div>
+          <div class="mail-flap"></div>
+          <div class="mail-address"><span>MỘT LÁ THƯ GỬI ĐẾN</span><strong data-guest>bạn</strong></div>
+          <div class="mail-wax"><span data-initials>ND</span></div>
+          <span class="mail-envelope-note">gửi bằng tất cả yêu thương</span>
+        </div>
+        <div class="mail-reveal" id="letter-content">
+          <div class="mail-reveal-inner">
+            <article class="mail-paper" aria-labelledby="letter-title">
+              <div class="mail-paper-top"><span>THƯ MỜI TỐT NGHIỆP</span><svg viewBox="0 0 48 40" width="43" height="36" fill="none" aria-hidden="true"><path d="m3 14 21-10 21 10-21 10L3 14Z M11 19v12c8 6 18 6 26 0V19 M44 15v15" stroke="currentColor" stroke-width="1.3"/><circle cx="44" cy="33" r="2" fill="currentColor"/></svg></div>
+              <div class="letter-heading"><h2 id="letter-title" tabindex="-1">Gửi <em data-guest>bạn</em>,</h2></div>
+              <div class="letter-body"><p class="letter-lead">Mình sắp tốt nghiệp rồi!</p><p id="personal-message"></p><p>Đến chung vui, chụp một tấm ảnh, và cùng mình lưu lại một kỷ niệm nhé. Sự có mặt của bạn sẽ là món quà ý nghĩa nhất.</p><div class="signature"><span>Thân mến,</span><strong data-graduate>Mai Nhật Duy</strong><span class="signature-line"></span></div></div>
+              <div class="mail-paper-bottom"><span>Mong được gặp bạn ở ngày vui ♡</span><button class="mail-close" id="letter-close" type="button" hidden>Gấp thư lại <span aria-hidden="true">↙</span></button></div>
+            </article>
+          </div>
+        </div>
+        <button class="mail-open" id="letter-open" type="button" aria-expanded="false" aria-controls="letter-content" aria-label="Mở phong thư và đọc lời nhắn" hidden></button>
+      </div>
+      <p class="mail-hint" id="letter-hint" aria-hidden="true">Chạm vào dấu sáp để mở thư</p>
+      <a class="mail-next" href="#details">CUỘC HẸN CỦA CHÚNG MÌNH <span aria-hidden="true">↓</span></a>
     </section>
     <section class="details-section" id="details" aria-labelledby="details-title">
       <div class="section-top reveal"><div><p class="eyebrow">02 / CUỘC HẸN CỦA CHÚNG MÌNH</p><h2 id="details-title">Hẹn bạn ở <em>ngày vui.</em></h2></div><span class="section-note">Một dấu mốc nhỏ.<br>Một niềm vui thật lớn.</span></div>

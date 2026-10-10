@@ -20,6 +20,48 @@
   document.title = `Lời mời tốt nghiệp · ${config.graduateName}`;
   $('meta[name="description"]').content = `Lời mời đến lễ tốt nghiệp của ${config.graduateName}, ${config.university}.`;
   $('#personal-message').textContent = config.message;
+  const invitation = $('#invitation');
+  const letterOpen = $('#letter-open');
+  const letterClose = $('#letter-close');
+  const letterContent = $('#letter-content');
+  let letterFocusTimer;
+  function setLetterOpen(open, moveFocus = true) {
+    clearTimeout(letterFocusTimer);
+    invitation.classList.toggle('is-open', open);
+    letterOpen.setAttribute('aria-expanded', String(open));
+    letterOpen.disabled = open;
+    letterContent.inert = !open;
+    letterContent.setAttribute('aria-hidden', String(!open));
+    $('#letter-hint').textContent = open ? 'Có những lời, mình muốn gửi riêng đến bạn.' : 'Chạm vào dấu sáp để mở thư';
+    if (moveFocus) {
+      if (open) {
+        letterFocusTimer = setTimeout(() => {
+          // Do not steal focus if the guest has already moved to another control.
+          if (document.activeElement !== document.body && document.activeElement !== letterOpen) return;
+          const title = $('#letter-title');
+          title.focus({ preventScroll: true });
+          const bounds = title.getBoundingClientRect();
+          if (bounds.top < 0 || bounds.bottom > innerHeight) title.scrollIntoView({ behavior: reducedMotion ? 'instant' : 'smooth', block: 'start' });
+        }, reducedMotion ? 0 : 1250);
+      } else {
+        letterOpen.focus({ preventScroll: true });
+        letterFocusTimer = setTimeout(() => {
+          if (document.activeElement !== letterOpen) return;
+          const bounds = letterOpen.getBoundingClientRect();
+          if (bounds.top < 0 || bounds.bottom > innerHeight) letterOpen.scrollIntoView({ behavior: reducedMotion ? 'instant' : 'smooth', block: 'center' });
+        }, reducedMotion ? 0 : 1250);
+      }
+    }
+  }
+  setLetterOpen(false, false);
+  invitation.classList.add('mail-ready');
+  letterOpen.hidden = false;
+  letterClose.hidden = false;
+  letterOpen.addEventListener('click', () => setLetterOpen(true));
+  letterClose.addEventListener('click', () => setLetterOpen(false));
+  letterContent.addEventListener('keydown', event => {
+    if (event.key === 'Escape') { event.preventDefault(); setLetterOpen(false); }
+  });
   $('#event-venue').textContent = config.venue === config.university ? 'Cùng mình lưu lại khoảnh khắc đáng nhớ.' : config.venue;
   $('#event-address').textContent = config.address;
   const mapsUrl = safeUrl(config.mapsUrl);

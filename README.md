@@ -41,7 +41,7 @@ Workflow chỉ đóng gói file giao diện công khai, `assets/`, `memes/` và 
 
 ## Trải nghiệm
 
-Mở trang là thấy ngay thư mời; các phần bên dưới xuất hiện khi cuộn, đồng hồ đếm ngược, link Maps, tải lịch `.ics`, link cá nhân hóa và hỗ trợ giảm chuyển động. Ảnh và nhạc là tùy chọn. Font tải từ Google Fonts, có font hệ thống dự phòng; các tương tác cơ bản chạy bằng JavaScript thuần; video gửi xe dùng trình phát Facebook.
+Phần lời nhắn là một phong thư xanh có dấu niêm phong vàng. Chạm phong thư (hoặc nhấn Enter/Space khi dùng bàn phím) để tách dấu sáp, lật nắp và mở tờ giấy chứa lời mời cá nhân hóa. Dùng **Gấp thư lại** hoặc Escape để đóng thư. Chế độ giảm chuyển động hiển thị ngay trạng thái mới; khi tắt JavaScript, nội dung thư vẫn hiện. Các phần bên dưới xuất hiện khi cuộn, đồng hồ đếm ngược, link Maps, tải lịch `.ics`, link cá nhân hóa và hỗ trợ giảm chuyển động. Ảnh và nhạc là tùy chọn. Font tải từ Google Fonts, có font hệ thống dự phòng; các tương tác cơ bản chạy bằng JavaScript thuần; video gửi xe dùng trình phát Facebook.
 
 ## Bản đồ khuôn viên và hướng dẫn gửi xe
 
