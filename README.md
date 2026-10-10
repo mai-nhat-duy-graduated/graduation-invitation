@@ -100,3 +100,14 @@ Kiểm tra sau thiết lập: khách gửi một ảnh → Duy đăng nhập `ra
 Phiên bản này không có gallery công khai, sửa/xóa bài gửi hay lưu ảnh thực tế tại lễ. Bạn có thể quản lý dữ liệu trực tiếp trong Dashboard. Session đăng nhập dùng `sessionStorage` theo tab; lịch sử random dùng `localStorage`. Ảnh được lưu ngay, không cần duyệt. Mỗi người có thể gửi nhiều lần.
 
 Kiểm thử trình duyệt có backend giả lập: dùng Playwright đã cài trong môi trường kiểm thử, chạy server bản public rồi `PREVIEW_URL=http://127.0.0.1:4173 node tests/browser-check.cjs`. Có thể đặt `CHROME_PATH` để dùng Chrome cài sẵn. Script kiểm tra mobile/desktop, gửi ảnh, đăng nhập, signed URL, hết lượt, giữ lịch sử, reset, fallback và đăng xuất. Các bài kiểm tra Node yêu cầu Node 22.13+; không thay thế kiểm tra quyền RLS trên Supabase thật.
+
+### Thiết lập backend qua GitHub Actions
+
+Workflow **Set up photo backend** có thể tạo bảng/bucket, cấp quyền và deploy function từ GitHub. Trong repository **Settings → Secrets and variables → Actions**, thêm:
+
+- Secret `SUPABASE_ACCESS_TOKEN`: personal access token của tài khoản Supabase có quyền trên dự án. Token chỉ chạy ở workflow backend, không được đưa vào GitHub Pages.
+- Variable `SUPABASE_PROJECT_REF`: `uhvvgzpahsybpuzspnux`.
+- Variable `PHOTO_ADMIN_UID`: UUID tài khoản Duy từ **Supabase Authentication → Users**, không phải username GitHub.
+- Variable `PHOTO_ALLOWED_ORIGINS`: `https://mai-nhat-duy-graduated.github.io,http://localhost:4173,http://127.0.0.1:4173`.
+
+Chạy workflow thủ công tại **Actions → Set up photo backend → Run workflow**. Nếu chưa có tài khoản Auth, có thể chạy workflow trước để mở tính năng gửi ảnh; quyền xem ảnh vẫn bị khóa. Sau khi tạo tài khoản, đặt PHOTO_ADMIN_UID và chạy lại để cấp quyền. Script dùng Supabase Management API và transaction để chạy SQL, nên không cần đưa password database hoặc service-role key lên GitHub. Chạy trên dự án mới dành cho thiệp; script không xóa các admin đã được cấp trước đó. Hướng dẫn chính thức: [Supabase deploy qua GitHub Actions](https://supabase.com/docs/guides/functions/examples/github-actions).

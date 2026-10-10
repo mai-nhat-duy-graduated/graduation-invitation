@@ -37,3 +37,17 @@ test('CORS preflight and disallowed origins',async()=>{
   assert.equal((await h.run(new Request('https://backend.example',{method:'OPTIONS',headers:{Origin:'https://invitation.example'}}))).status,204);
   assert.equal((await h.run(new Request('https://backend.example',{method:'POST',headers:{Origin:'https://other.example'}}))).status,403);
 });
+test('deployment requires an actual Auth UID and substitutes it atomically',async()=>{
+  const {configureSchema}=await import('../scripts/setup-photo-backend.mjs');
+  const schema=fs.readFileSync('supabase/schema.sql','utf8');
+  for(const uid of ['mai-nhat-duy-graduated','',"'; drop table public.photo_ideas; --",'00000000-0000-0000-0000-000000000000']) assert.throws(()=>configureSchema(schema,uid));
+  const sql=configureSchema(schema,'12345678-1234-1234-1234-123456789abc');
+  assert.ok(sql.startsWith('begin;'));assert.ok(sql.endsWith('commit;'));assert.ok(!sql.includes('00000000-0000-0000-0000-000000000000'));
+});
+
+test('initial deployment without Auth user keeps the admin allowlist empty', async () => {
+  const {configureSchema} = await import('../scripts/setup-photo-backend.mjs');
+  const sql = configureSchema(fs.readFileSync('supabase/schema.sql', 'utf8'), undefined);
+  assert.ok(!sql.includes('insert into public.photo_admins'));
+  assert.ok(sql.includes('enable row level security'));
+});
