@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body.invitation-page {
+      margin: 0;
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      background: #f8f5ec !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .envelope-stage {
+      width: 760px;
+      text-align: center;
+      perspective: 1400px;
+    }
+    .sealed-envelope {
+      width: 760px;
+      height: 470px;
+      transform: rotate(-2.5deg);
+      box-shadow: 0 42px 75px -20px rgba(35, 59, 52, 0.45), 0 6px 14px rgba(35, 59, 52, 0.12);
+      cursor: default;
+      animation: none !important;
+    }
+    .envelope-seal {
+      width: 104px;
+      height: 102px;
+      top: 43%;
+      left: calc(50% - 52px);
+      box-shadow:
+        0 0 0 4px rgba(245, 226, 175, 0.7),
+        0 0 24px 6px rgba(235, 210, 150, 0.5),
+        inset 2px 3px 3px #f4e1ad,
+        inset -2px -3px 3px #826839,
+        2px 6px 12px #0b211b66;
+      animation: none !important;
+    }
+    .envelope-seal span {
+      font-size: 36px;
+    }
+    .envelope-from {
+      position: absolute;
+      z-index: 4;
+      bottom: 44px;
+      width: 100%;
+      color: #f7f1df;
+      font: italic 66px/1.2 var(--serif);
+      letter-spacing: 0.5px;
+      text-shadow: 0 4px 14px rgba(11, 33, 27, 0.6);
+    }
+  </style>
+</head>
+<body class="invitation-page">
+  <div class="envelope-stage">
+    <div class="sealed-envelope">
+      <div class="envelope-lining" aria-hidden="true"></div>
+      <div class="envelope-pocket" aria-hidden="true"></div>
+      <div class="envelope-flap" aria-hidden="true"></div>
+      <div class="envelope-seal"><span>ND</span></div>
+      <div class="envelope-from">from Mai Duy</div>
+    </div>
+  </div>
+</body>
+</html>
