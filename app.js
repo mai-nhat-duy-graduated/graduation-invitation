@@ -16,6 +16,8 @@
     try { const url = new URL(value, document.baseURI); return ['https:', 'http:'].includes(url.protocol) ? url.href : null; } catch { return null; }
   };
   setAll('[data-guest]', guest);
+  $('.envelope-address').classList.toggle('long-name', guest.length > 32);
+  $('.envelope-address').classList.toggle('very-long-name', guest.length > 55);
   setAll('[data-graduate]', config.graduateName);
   setAll('[data-initials]', config.initials);
   setAll('[data-university]', config.university);
@@ -27,47 +29,35 @@
   $('#letter-signoff').textContent = wording.signoff;
   $('#photo-title').textContent = wording.photoTitle;
   $('#photo-intro').textContent = wording.photoDescription;
-  const invitation = $('#invitation');
   const letterOpen = $('#letter-open');
-  const letterClose = $('#letter-close');
-  const letterContent = $('#letter-content');
-  let letterFocusTimer;
-  function setLetterOpen(open, moveFocus = true) {
-    clearTimeout(letterFocusTimer);
-    invitation.classList.toggle('is-open', open);
-    letterOpen.setAttribute('aria-expanded', String(open));
-    letterOpen.disabled = open;
-    letterContent.inert = !open;
-    letterContent.setAttribute('aria-hidden', String(!open));
-    $('#letter-hint').textContent = open ? 'Có những lời, mình muốn gửi riêng đến bạn.' : 'Chạm vào dấu sáp để mở thư';
-    if (moveFocus) {
-      if (open) {
-        letterFocusTimer = setTimeout(() => {
-          // Do not steal focus if the guest has already moved to another control.
-          if (document.activeElement !== document.body && document.activeElement !== letterOpen) return;
-          const title = $('#letter-title');
-          title.focus({ preventScroll: true });
-          const bounds = title.getBoundingClientRect();
-          if (bounds.top < 0 || bounds.bottom > innerHeight) title.scrollIntoView({ behavior: reducedMotion ? 'instant' : 'smooth', block: 'start' });
-        }, reducedMotion ? 0 : 1250);
-      } else {
-        letterOpen.focus({ preventScroll: true });
-        letterFocusTimer = setTimeout(() => {
-          if (document.activeElement !== letterOpen) return;
-          const bounds = letterOpen.getBoundingClientRect();
-          if (bounds.top < 0 || bounds.bottom > innerHeight) letterOpen.scrollIntoView({ behavior: reducedMotion ? 'instant' : 'smooth', block: 'center' });
-        }, reducedMotion ? 0 : 1250);
-      }
-    }
-  }
-  setLetterOpen(false, false);
-  invitation.classList.add('mail-ready');
-  letterOpen.hidden = false;
-  letterClose.hidden = false;
-  letterOpen.addEventListener('click', () => setLetterOpen(true));
-  letterClose.addEventListener('click', () => setLetterOpen(false));
-  letterContent.addEventListener('keydown', event => {
-    if (event.key === 'Escape') { event.preventDefault(); setLetterOpen(false); }
+  const gate = $('#letter-gate');
+  const content = $('#invitation-content');
+  let state = 'closed';
+  let startMusic = () => {};
+  content.inert = true;
+  content.setAttribute('aria-hidden', 'true');
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  letterOpen.addEventListener('click', () => {
+    if (state !== 'closed') return;
+    state = 'opening';
+    document.body.dataset.state = state;
+    letterOpen.disabled = true;
+    letterOpen.setAttribute('aria-expanded', 'true');
+    // Playback must begin within the opening gesture for mobile browsers.
+    startMusic();
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    setTimeout(() => {
+      state = 'open';
+      document.body.dataset.state = state;
+      document.documentElement.classList.add('invitation-open');
+      gate.hidden = true;
+      content.inert = false;
+      content.removeAttribute('aria-hidden');
+      $('meta[name="theme-color"]').content = '#183d60';
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      $('#hero-title').focus({ preventScroll: true });
+    }, reducedMotion ? 0 : 1800);
   });
   $('#event-venue').textContent = config.venue || '';
   $('#event-venue').hidden = !config.venue || config.venue === config.university;
@@ -81,11 +71,15 @@
     $('#venue-map').hidden = false;
   }
   if (validDate) {
+    $('#hero-date').textContent = format({ day: '2-digit', month: '2-digit', year: 'numeric' }).replaceAll('/', '.');
+    $('#hero-year').textContent = format({ year: 'numeric' });
     $('#event-month').textContent = `THÁNG ${format({ month: 'numeric' })} · ${format({ year: 'numeric' })}`;
     $('#event-day').textContent = format({ day: '2-digit' });
     $('#event-weekday').textContent = format({ weekday: 'long' });
     $('#event-time').textContent = `${format({ hour: '2-digit', minute: '2-digit', hour12: false })} · Giờ bắt đầu`;
   } else {
+    $('#hero-date').textContent = 'Ngày tổ chức sẽ được cập nhật';
+    $('#hero-year').textContent = '—';
     $('#event-month').textContent = 'NGÀY TỔ CHỨC';
     $('#event-day').textContent = '—';
     $('#event-weekday').textContent = 'Sẽ cập nhật';
@@ -148,7 +142,7 @@
   }
   const musicUrl = safeUrl(config.musicUrl);
   if (musicUrl) {
-    const music = new Audio(musicUrl); music.loop = true; music.preload = 'auto'; music.volume = .35;
+    const music = new Audio(musicUrl); music.loop = true; music.preload = 'none'; music.volume = .35;
     const button = $('#music-toggle'); button.hidden = false;
     function musicState(playing) {
       button.setAttribute('aria-pressed', String(playing));
@@ -159,22 +153,13 @@
     music.addEventListener('pause', () => musicState(false));
     music.addEventListener('error', () => { musicState(false); toast('Chưa tải được nhạc nền.'); });
     button.addEventListener('click', async () => {
-      musicInteracted = true;
       if (!music.paused) { music.pause(); musicState(false); return; }
       await playMusic();
     });
-    let musicInteracted = false;
     async function playMusic(silent = false) {
       try { await music.play(); }
       catch { if (!silent) toast('Bấm nút ♫ để bật nhạc nhé.'); }
     }
-    function playOnFirstInteraction() {
-      if (musicInteracted || !music.paused) return;
-      musicInteracted = true;
-      void playMusic(true);
-    }
-    document.addEventListener('click', playOnFirstInteraction, { once: true });
-    document.addEventListener('keydown', playOnFirstInteraction, { once: true });
-    void playMusic(true);
+    startMusic = () => { void playMusic(true); };
   }
 })();

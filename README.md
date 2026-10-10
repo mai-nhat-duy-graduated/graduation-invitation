@@ -15,7 +15,7 @@ Chuẩn bị `_site/` theo phần **Ảnh mẫu và chạy thử** bên dưới 
 Sửa `config.js`: tên, chữ viết tắt, trường, thời gian ISO có múi giờ `+07:00`, địa điểm, link Maps và lời nhắn. Thời gian hiển thị luôn theo Việt Nam dù khách đang ở nước khác.
 
 - **Ảnh cá nhân:** đặt ảnh vào `assets/`, gán `portraitUrl: 'assets/portrait.jpg'`. Khối ảnh chỉ hiện khi có ảnh; nên dùng ảnh WebP/JPEG dưới 500 KB.
-- **Nhạc:** đặt file vào `music/` và gán `musicUrl` (hiện dùng `music/Cosmic Echoes.mp3`). Nhạc phát nền, âm lượng 35%, lặp lại và tự phát khi vào trang; nếu trình duyệt chặn tự phát, nhạc bật sau lần chạm hoặc nhấn phím đầu tiên. Nút ♫/Ⅱ bật hoặc tạm dừng nhạc; lựa chọn tắt nhạc của khách được giữ khi mở thiệp lần nữa.
+- **Nhạc:** đặt file vào `music/` và gán `musicUrl` (hiện dùng `music/Cosmic Echoes.mp3`). Nhạc phát nền, âm lượng 35%, lặp lại và bắt đầu khi khách nhấn **Mở thư**. Nút ♫/Ⅱ chỉ xuất hiện sau khi mở; nếu trình duyệt chặn phát, khách dùng nút này để bật nhạc. Tải lại trang sẽ trở về phong thư và nhạc chờ thao tác mở tiếp theo.
 - Thẻ mô tả và nội dung `<noscript>` trong `index.html` là dự phòng cho trình thu thập và thiết bị tắt JavaScript; cập nhật chúng khi thay đổi buổi lễ.
 
 ## Link dành riêng cho từng người
@@ -43,7 +43,11 @@ Workflow chỉ đóng gói file giao diện công khai, `assets/`, `memes/` và 
 
 ## Trải nghiệm
 
-Phần lời nhắn là một phong thư xanh có dấu niêm phong vàng. Chạm phong thư (hoặc nhấn Enter/Space khi dùng bàn phím) để tách dấu sáp, lật nắp và mở tờ giấy chứa lời mời cá nhân hóa. Dùng **Gấp thư lại** hoặc Escape để đóng thư. Chế độ giảm chuyển động hiển thị ngay trạng thái mới; khi tắt JavaScript, nội dung thư vẫn hiện. Các phần bên dưới xuất hiện khi cuộn, đồng hồ đếm ngược, link Maps và hỗ trợ giảm chuyển động. Phần kết thiệp chỉ ghi “Phải đến nhé”. Ảnh và nhạc là tùy chọn. Font tải từ Google Fonts, có font hệ thống dự phòng; các tương tác cơ bản chạy bằng JavaScript thuần; video gửi xe dùng trình phát Facebook.
+Khi vào trang hoặc tải lại, khách chỉ thấy phong thư xanh trên nền trắng ngà, tên người nhận, người gửi và nút **Mở thư**. Nội dung, điều hướng, footer và nút nhạc được ẩn hoàn toàn; trang không cuộn trước khi mở.
+
+Nhấn **Mở thư** (hoặc Enter/Space khi focus nút) để tách dấu sáp, lật nắp rồi chuyển cảnh khoảng 1,8 giây sang ảnh bầu trời `assets/os-x-mountain-lion-3840x2160-24072.jpg`. Trang cuộn gồm lời mời cá nhân hóa, thông tin buổi lễ, hướng dẫn đến trường, form gửi ảnh và “Phải đến nhé”; các khối nội dung dùng kính mờ với nền dự phòng khi trình duyệt không hỗ trợ blur. Ảnh nền được tải sớm; nếu ảnh lỗi, trang vẫn đọc được trên nền xanh.
+
+Chế độ giảm chuyển động mở nội dung ngay. Sau khi mở, focus chuyển đến tiêu đề; nội dung bị ẩn không nhận focus trước đó. Không có nút gấp thư lại. Khi tắt JavaScript, nội dung lời mời và thông tin buổi lễ vẫn hiện. Font tải từ Google Fonts, có font hệ thống dự phòng. Trang random giữ giao diện riêng.
 
 ## Bản đồ khuôn viên và hướng dẫn gửi xe
 
@@ -94,7 +98,7 @@ Workflow tự tạo manifest mỗi lần deploy và chỉ đưa các file công 
 
 ```sh
 mkdir -p _site
-cp index.html random.html styles.css config.js app.js photo-core.js photo-submit.js random.js _site/
+cp index.html random.html styles.css config.js guest-copy.js app.js photo-core.js photo-submit.js random.js _site/
 cp -R assets memes music _site/
 python3 -m http.server 4173 --bind 127.0.0.1 --directory _site
 ```
@@ -117,3 +121,5 @@ Workflow **Set up photo backend** có thể tạo bảng/bucket, cấp quyền v
 Chạy workflow thủ công tại **Actions → Set up photo backend → Run workflow**. Nếu chưa có tài khoản Auth, có thể chạy workflow trước để mở tính năng gửi ảnh; quyền xem ảnh vẫn bị khóa. Sau khi tạo tài khoản, đặt PHOTO_ADMIN_UID và chạy lại để cấp quyền. Script dùng Supabase Management API và transaction để chạy SQL, nên không cần đưa password database hoặc service-role key lên GitHub. Chạy trên dự án mới dành cho thiệp; script không xóa các admin đã được cấp trước đó. Hướng dẫn chính thức: [Supabase deploy qua GitHub Actions](https://supabase.com/docs/guides/functions/examples/github-actions).
 
 Tên đăng nhập `duy` được Edge Function `admin-login` ánh xạ đến tài khoản `PHOTO_ADMIN_UID` phía server. Mật khẩu được kiểm tra qua Supabase Auth, không lưu trong frontend/config/workflow. Đổi mật khẩu trong Supabase Authentication khi cần. Khi deploy bằng CLI thủ công, đặt secret `PHOTO_ADMIN_UID` và deploy thêm `admin-login --no-verify-jwt`.
+
+Kiểm tra trải nghiệm mở thư (Playwright): `PREVIEW_URL=http://127.0.0.1:4173 node tests/invitation-browser.cjs`. Bao gồm trạng thái đóng/mở, bàn phím, mobile/desktop, tên dài, link khách, tải lại, giảm chuyển động, ảnh nền lỗi và JavaScript bị tắt.

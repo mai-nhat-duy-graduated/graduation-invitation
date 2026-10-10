@@ -3,51 +3,67 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#263f35">
+  <meta name="theme-color" content="#f8f5ec">
+  <script>document.documentElement.classList.add("invitation-js");</script>
+  <link rel="preload" as="image" href="assets/os-x-mountain-lion-3840x2160-24072.jpg">
   <meta name="description" content="Một lời mời chân thành đến lễ tốt nghiệp của Mai Nhật Duy — Đại học Tôn Đức Thắng, 17.10.2026.">
   <title>Lời mời tốt nghiệp · Mai Nhật Duy</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=countdown-centered">
+  <link rel="stylesheet" href="styles.css?v=sky-letter-1">
   <script src="config.js" defer></script>
   <script src="guest-copy.js" defer></script>
-  <script src="app.js?v=20261010-private-guests" defer></script>
+  <script src="app.js?v=sky-letter-1" defer></script>
   <script src="photo-core.js" defer></script>
   <script src="photo-submit.js?v=20261010-private-guests" defer></script>
 </head>
-<body>
+<body class="invitation-page" data-state="closed">
+  <div class="sky-background" aria-hidden="true"></div>
+  <section class="letter-gate" id="letter-gate" aria-label="Phong thư mời tốt nghiệp">
+    <div class="envelope-stage">
+      <div class="sealed-envelope">
+        <div class="envelope-lining" aria-hidden="true"></div>
+        <div class="envelope-pocket" aria-hidden="true"></div>
+        <div class="envelope-flap" aria-hidden="true"></div>
+        <div class="envelope-address"><span>GỬI ĐẾN</span><strong data-guest>bạn</strong></div>
+        <div class="envelope-seal" aria-hidden="true"><span data-initials>ND</span></div>
+        <div class="envelope-from">Từ <span data-graduate>Mai Nhật Duy</span></div>
+      </div>
+      <button class="open-letter-button" id="letter-open" type="button" aria-expanded="false" aria-controls="invitation-content">Mở thư <span aria-hidden="true">↗</span></button>
+    </div>
+  </section>
+  <div id="invitation-content">
   <a class="skip-link" href="#invitation">Đến nội dung lời mời</a>
   <main>
-    <section class="invitation-section is-open" id="invitation" aria-labelledby="invitation-title">
-      <div class="mail-masthead"><a class="mail-brand" href="#invitation"><span class="brand-mark" data-initials>ND</span><span data-graduate>Mai Nhật Duy</span></a><span>MỘT CỘT MỐC · MỘT LỜI MỜI</span></div>
-      <h1 class="sr-only" id="invitation-title">Thiệp mời tốt nghiệp của Mai Nhật Duy</h1>
-      <div class="mail-stage" id="mail-stage">
-        <span class="mail-spark mail-spark-one" aria-hidden="true">✧</span>
-        <span class="mail-spark mail-spark-two" aria-hidden="true">✦</span>
-        <div class="mail-envelope" aria-hidden="true">
-          <div class="mail-lining"></div>
-          <div class="mail-pocket"></div>
-          <div class="mail-flap"></div>
-          <div class="mail-address"><span>MỘT LÁ THƯ GỬI ĐẾN</span><strong data-guest>bạn</strong></div>
-          <div class="mail-wax"><span data-initials>ND</span></div>
-          <span class="mail-envelope-note">Từ Mai Duy</span>
-        </div>
-        <div class="mail-reveal" id="letter-content">
-          <div class="mail-reveal-inner">
-            <article class="mail-paper" aria-labelledby="letter-title">
-              <div class="mail-paper-top"><span>THƯ MỜI TỐT NGHIỆP</span><svg viewBox="0 0 48 40" width="43" height="36" fill="none" aria-hidden="true"><path d="m3 14 21-10 21 10-21 10L3 14Z M11 19v12c8 6 18 6 26 0V19 M44 15v15" stroke="currentColor" stroke-width="1.3"/><circle cx="44" cy="33" r="2" fill="currentColor"/></svg></div>
-              <div class="letter-heading"><h2 id="letter-title" tabindex="-1">Gửi <em data-guest>bạn</em>,</h2></div>
-              <div class="letter-body"><p class="letter-lead">Mình sắp tốt nghiệp rồi!</p><p id="personal-message"></p><p id="letter-closing"></p><div class="signature"><span>Thân mến,</span><strong data-graduate>Mai Nhật Duy</strong><span class="signature-line"></span></div></div>
-              <div class="mail-paper-bottom"><span id="letter-signoff">Hẹn gặp bạn ở ngày vui ♡</span><button class="mail-close" id="letter-close" type="button" hidden>Gấp thư lại <span aria-hidden="true">↙</span></button></div>
-            </article>
-          </div>
-        </div>
-        <button class="mail-open" id="letter-open" type="button" aria-expanded="false" aria-controls="letter-content" aria-label="Mở phong thư và đọc lời nhắn" hidden></button>
+    <section class="sky-hero" aria-labelledby="hero-title">
+      <header class="sky-header">
+        <a class="sky-brand" href="#invitation" aria-label="Đọc lời mời của Mai Nhật Duy">MAI NHẬT DUY</a>
+        <nav class="sky-nav" aria-label="Các phần của thiệp">
+          <a href="#invitation"><span>01</span> Lời mời</a>
+          <a href="#details"><span>02</span> Cuộc hẹn</a>
+          <a href="#arrival"><span>03</span> Đường đến</a>
+          <a href="#photo-ideas"><span>04</span> Kiểu chụp</a>
+        </nav>
+        <span class="sky-edition">CLASS OF <span id="hero-year">2026</span></span>
+      </header>
+      <div class="sky-hero-copy">
+        <p class="eyebrow">MỘT HÀNH TRÌNH · NGÀN KỶ NIỆM</p>
+        <h1 id="hero-title" tabindex="-1"><em>Một ngày</em><br>đáng nhớ<span class="hero-period">.</span></h1>
+        <p class="hero-dedication">Cùng <span data-graduate>Mai Nhật Duy</span><br>giữ lại một khoảnh khắc thanh xuân.</p>
       </div>
-      <p class="mail-hint" id="letter-hint" aria-hidden="true">Chạm vào dấu sáp để mở thư</p>
-      <a class="mail-next" href="#details">CUỘC HẸN CỦA CHÚNG MÌNH <span aria-hidden="true">↓</span></a>
+      <div class="sky-hero-bottom"><span id="hero-date">17.10.2026</span><a href="#invitation">MỘT LỜI MỜI DÀNH RIÊNG CHO BẠN <span aria-hidden="true">↓</span></a><span data-university>Đại học Tôn Đức Thắng</span></div>
+    </section>
+    <section class="personal-section" id="invitation" aria-labelledby="letter-title">
+      <div class="section-label"><span>01 / LỜI MỜI</span><span aria-hidden="true">✳</span></div>
+      <article class="glass-letter reveal">
+        <div class="letter-overline"><span>THƯ MỜI TỐT NGHIỆP</span><span aria-hidden="true">♡</span></div>
+        <div class="letter-heading"><h2 id="letter-title">Gửi <em data-guest>bạn</em>,</h2></div>
+        <div class="letter-body"><p class="letter-lead">Mình sắp tốt nghiệp rồi!</p><p id="personal-message">Mình mời bạn đến chung vui và chụp vài tấm ảnh kỷ niệm trong ngày tốt nghiệp.</p><p id="letter-closing">Nếu đến được, bạn nhắn mình biết nhé!</p><div class="signature"><span>Thân mến,</span><strong data-graduate>Mai Nhật Duy</strong></div></div>
+        <p class="letter-signoff" id="letter-signoff">Hẹn gặp bạn ở ngày vui ♡</p>
+      </article>
+      <a class="section-next" href="#details">CUỘC HẸN CỦA CHÚNG MÌNH <span aria-hidden="true">↓</span></a>
     </section>
     <section class="details-section" id="details" aria-labelledby="details-title">
-      <div class="section-top reveal"><div><p class="eyebrow" id="details-title">THỜI GIAN &amp; ĐỊA ĐIỂM</p></div></div>
+      <div class="section-top reveal"><div><p class="eyebrow">02 / CUỘC HẸN</p><h2 id="details-title">Hẹn nhau ngày ấy.</h2></div></div>
       <div class="event-grid reveal">
         <div class="date-card"><span class="eyebrow" id="event-month">THÁNG 10 · 2026</span><span class="event-day" id="event-day">17</span><span id="event-weekday">Thứ Bảy</span><span class="date-card-rule"></span><span id="event-time">10:30 sáng</span><span class="timezone">Giờ Việt Nam (GMT+7)</span></div>
         <div class="venue-card"><span class="eyebrow">LỄ TỐT NGHIỆP</span><h3 data-university>Đại học Tôn Đức Thắng</h3><p id="event-venue"></p><p class="venue-address" id="event-address"></p><div class="event-actions"><a class="button primary" id="maps-link" target="_blank" rel="noopener noreferrer">Xem đường đi <span aria-hidden="true">↗</span></a></div></div>
@@ -58,7 +74,7 @@
       <div class="countdown-row reveal"><div class="countdown" aria-label="Thời gian còn lại đến lễ tốt nghiệp"><div><strong id="days">00</strong><span>NGÀY</span></div><b>:</b><div><strong id="hours">00</strong><span>GIỜ</span></div><b>:</b><div><strong id="minutes">00</strong><span>PHÚT</span></div><b>:</b><div><strong id="seconds">00</strong><span>GIÂY</span></div></div></div>
     </section>
     <section class="arrival-section" id="arrival" aria-labelledby="arrival-title">
-      <div class="section-top reveal"><div><p class="eyebrow">ĐẾN TRƯỜNG THẬT DỄ</p><h2 id="arrival-title">Thông tin cần thiết</h2></div></div>
+      <div class="section-top reveal"><div><p class="eyebrow">03 / ĐƯỜNG ĐẾN</p><h2 id="arrival-title">Thông tin cần thiết</h2></div></div>
       <div class="arrival-grid reveal">
         <article class="arrival-card"><span class="arrival-number">01 / KHÁM PHÁ KHUÔN VIÊN</span><h3>Bản đồ trường</h3><p>Các khu vực đã được đánh dấu kèm tên trên bản đồ. Chạm vào ảnh để xem nét và dùng hai ngón tay phóng to trên điện thoại.</p>
           <a class="campus-image-link" id="campus-preview-link" href="assets/tdtu-campus-map.jpg" target="_blank" rel="noopener noreferrer" aria-label="Mở ảnh bản đồ TDTU độ phân giải cao"><img id="campus-preview" src="assets/tdtu-campus-map-preview.webp" alt="Sơ đồ toàn bộ khuôn viên Đại học Tôn Đức Thắng" width="1500" height="888" loading="lazy" decoding="async"><span class="campus-image-caption">Chạm để xem ảnh lớn ↗</span></a>
@@ -75,7 +91,7 @@
     </section>
     <section class="memory-section reveal" id="memory" hidden><div class="portrait-frame"><img id="portrait" alt="Ảnh kỷ niệm của người tốt nghiệp" loading="lazy"></div><div><p class="eyebrow">MỘT THỜI ĐỂ NHỚ</p><h2>Những năm tháng<br><em>thật đẹp.</em></h2><p>Thanh xuân có những người bạn, những bài học, và cả những giấc mơ. Cảm ơn bạn đã cùng mình đi qua một phần hành trình này.</p></div></section>
     <section class="photo-section" id="photo-ideas" aria-labelledby="photo-title">
-      <p class="eyebrow">MỘT KIỂU CHỤP, MỘT KỶ NIỆM</p>
+      <p class="eyebrow">04 / MỘT KIỂU CHỤP, MỘT KỶ NIỆM</p>
       <h2 id="photo-title">Bạn muốn chụp kiểu nào <em>cùng mình?</em></h2>
       <p id="photo-intro">Gửi một ảnh mẫu nhé. Đến buổi lễ, mình sẽ random từ ảnh mẫu và những ý tưởng các bạn gửi!</p>
       <form id="photo-form" class="photo-form">
@@ -91,6 +107,7 @@
   </main>
   <footer><a class="brand" href="#"><span class="brand-mark" data-initials>ND</span><span data-graduate>Mai Nhật Duy</span></a><span>Khép lại một hành trình, giữ lại những yêu thương.</span><span>MADE WITH ♡ · 2026</span></footer>
   <button class="music-toggle" id="music-toggle" aria-label="Bật nhạc nền" aria-pressed="false" hidden>♫</button>
+  </div>
   <div class="toast" id="toast" role="status"></div>
   <noscript><p class="noscript-note">Bật JavaScript để xem lời mời cá nhân hóa và đồng hồ đếm ngược. Buổi lễ: 10:30 ngày 17/10/2026, Đại học Tôn Đức Thắng.</p></noscript>
 </body>
