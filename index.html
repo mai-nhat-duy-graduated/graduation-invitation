@@ -9,9 +9,10 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css?v=countdown-centered">
   <script src="config.js" defer></script>
-  <script src="app.js?v=20261010-arrival-cards" defer></script>
+  <script src="guest-copy.js" defer></script>
+  <script src="app.js?v=20261010-private-guests" defer></script>
   <script src="photo-core.js" defer></script>
-  <script src="photo-submit.js?v=20261010-guest-name" defer></script>
+  <script src="photo-submit.js?v=20261010-private-guests" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#invitation">Đến nội dung lời mời</a>
@@ -35,8 +36,8 @@
             <article class="mail-paper" aria-labelledby="letter-title">
               <div class="mail-paper-top"><span>THƯ MỜI TỐT NGHIỆP</span><svg viewBox="0 0 48 40" width="43" height="36" fill="none" aria-hidden="true"><path d="m3 14 21-10 21 10-21 10L3 14Z M11 19v12c8 6 18 6 26 0V19 M44 15v15" stroke="currentColor" stroke-width="1.3"/><circle cx="44" cy="33" r="2" fill="currentColor"/></svg></div>
               <div class="letter-heading"><h2 id="letter-title" tabindex="-1">Gửi <em data-guest>bạn</em>,</h2></div>
-              <div class="letter-body"><p class="letter-lead">Mình sắp tốt nghiệp rồi!</p><p id="personal-message"></p><p>Đến chung vui, chụp một tấm ảnh, và cùng mình lưu lại một kỷ niệm nhé. Sự có mặt của bạn sẽ là món quà ý nghĩa nhất.</p><div class="signature"><span>Thân mến,</span><strong data-graduate>Mai Nhật Duy</strong><span class="signature-line"></span></div></div>
-              <div class="mail-paper-bottom"><span>Mong được gặp bạn ở ngày vui ♡</span><button class="mail-close" id="letter-close" type="button" hidden>Gấp thư lại <span aria-hidden="true">↙</span></button></div>
+              <div class="letter-body"><p class="letter-lead">Mình sắp tốt nghiệp rồi!</p><p id="personal-message"></p><p id="letter-closing"></p><div class="signature"><span>Thân mến,</span><strong data-graduate>Mai Nhật Duy</strong><span class="signature-line"></span></div></div>
+              <div class="mail-paper-bottom"><span id="letter-signoff">Hẹn gặp bạn ở ngày vui ♡</span><button class="mail-close" id="letter-close" type="button" hidden>Gấp thư lại <span aria-hidden="true">↙</span></button></div>
             </article>
           </div>
         </div>
@@ -70,12 +71,13 @@
           <a class="arrival-source" id="parking-source" href="https://www.facebook.com/watch/?v=1314719846733240" target="_blank" rel="noopener noreferrer">Không xem được video? Mở trên Facebook ↗</a>
         </article>
       </div>
+      <p class="arrival-intro reveal">Số điện thoại của Mai Duy: <a href="tel:0944043973"><strong>0944 043 973</strong></a></p>
     </section>
     <section class="memory-section reveal" id="memory" hidden><div class="portrait-frame"><img id="portrait" alt="Ảnh kỷ niệm của người tốt nghiệp" loading="lazy"></div><div><p class="eyebrow">MỘT THỜI ĐỂ NHỚ</p><h2>Những năm tháng<br><em>thật đẹp.</em></h2><p>Thanh xuân có những người bạn, những bài học, và cả những giấc mơ. Cảm ơn bạn đã cùng mình đi qua một phần hành trình này.</p></div></section>
     <section class="photo-section" id="photo-ideas" aria-labelledby="photo-title">
       <p class="eyebrow">MỘT KIỂU CHỤP, MỘT KỶ NIỆM</p>
       <h2 id="photo-title">Bạn muốn chụp kiểu nào <em>cùng mình?</em></h2>
-      <p>Gửi một ảnh mẫu nhé. Đến buổi lễ, mình sẽ random từ ảnh mẫu và những ý tưởng các bạn gửi!</p>
+      <p id="photo-intro">Gửi một ảnh mẫu nhé. Đến buổi lễ, mình sẽ random từ ảnh mẫu và những ý tưởng các bạn gửi!</p>
       <form id="photo-form" class="photo-form">
         <label for="photo-file">Ảnh mẫu <span class="field-hint">JPEG, PNG hoặc WebP · tối đa 5 MB</span><input id="photo-file" name="file" type="file" accept="image/jpeg,image/png,image/webp" required></label>
         <div id="photo-preview-wrap" hidden><img id="photo-preview" class="photo-preview" alt="Ảnh mẫu bạn sắp gửi"><button id="photo-change" class="text-button" type="button">Đổi ảnh</button></div>

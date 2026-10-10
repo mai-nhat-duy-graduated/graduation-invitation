@@ -43,7 +43,7 @@ function submissionHarness(fetcher) {
   for (const id of ['photo-form','photo-file','photo-description','photo-status','photo-send','photo-preview','photo-preview-wrap','photo-change']) {
     elements[id] = {value:'',files:[],disabled:false,hidden:true,textContent:'',events:{},addEventListener(event,fn){this.events[event]=fn;},removeAttribute(){},querySelectorAll(){return [elements['photo-file'],elements['photo-description'],elements['photo-send']];}};
   }
-  const context = { document:{querySelector:selector=>elements[selector.slice(1)]},location:{search:'?name=Minh'},URLSearchParams,URL,FormData,AbortSignal,PhotoIdeas:{...global.PhotoIdeas, settings:()=>({url:'https://backend.example',key:'public'})},fetch:fetcher };
+  const context = { window:{INVITATION_GUEST:{name:'Minh',role:'bạn'}}, document:{querySelector:selector=>elements[selector.slice(1)]},location:{search:'?name=Minh'},URLSearchParams,URL,FormData,AbortSignal,PhotoIdeas:{...global.PhotoIdeas, settings:()=>({url:'https://backend.example',key:'public'})},fetch:fetcher };
   vm.runInNewContext(fs.readFileSync('photo-submit.js','utf8'),context);
   elements['photo-file'].files = [new Blob(['photo'],{type:'image/png'})];
   elements['photo-description'].value = 'Kiểu vui';

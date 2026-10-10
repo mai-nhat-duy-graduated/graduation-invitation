@@ -8,7 +8,7 @@ Thiệp mời tốt nghiệp của **Mai Nhật Duy**, Đại học Tôn Đức 
 python3 -m http.server 4173 --bind 127.0.0.1 --directory _site
 ```
 
-Chuẩn bị `_site/` theo phần **Ảnh mẫu và chạy thử** bên dưới trước khi chạy server. Mở http://localhost:4173. Thử thiệp cá nhân hóa với `http://localhost:4173/?name=Minh`.
+Chuẩn bị `_site/` theo phần **Ảnh mẫu và chạy thử** bên dưới trước khi chạy server. Mở http://localhost:4173. Sau khi chuẩn bị `_site/`, chạy `node scripts/build-guests.mjs` để tạo các thiệp cá nhân hóa.
 
 ## Cập nhật nội dung
 
@@ -20,13 +20,16 @@ Sửa `config.js`: tên, chữ viết tắt, trường, thời gian ISO có múi
 
 ## Link dành riêng cho từng người
 
-Thêm `?name=` với tên đã URL-encode vào đường dẫn thiệp:
+Danh sách khách nằm ở `resources/guest.tsv` với hai cột `name` và `role` (Em, Bạn, Anh, Chị).
 
-```text
-https://mai-nhat-duy-graduated.github.io/graduation-invitation/?name=Minh
+```sh
+node scripts/build-guests.mjs --prepare
+gh secret set INVITATION_GUESTS --repo mai-nhat-duy-graduated/graduation-invitation < resources/guest-private.json
 ```
 
-Tên được đưa vào trang bằng `textContent`, tối đa 80 ký tự. Tên trong URL có thể được chia sẻ cùng đường link, nên chỉ dùng tên gọi thân mật, tránh thông tin nhạy cảm. Dùng đường dẫn website đã xuất bản để tạo thiệp riêng và gửi cho khách.
+Link được xuất ra `resources/guest-links.tsv`, dạng `/<ten_khach>_<ma_ngau_nhien_128_bit>/`. File JSON giữ mã để link không đổi khi deploy lại. Ba file trong resources được gitignore; không commit hoặc xuất bản danh sách khách/link. Workflow lấy dữ liệu từ GitHub Actions secret và dựng từng thiệp riêng, không tạo danh sách công khai. Chạy lại hai lệnh trên khi cập nhật khách rồi chạy workflow Pages.
+
+Mỗi thiệp chỉ chứa tên và role của người nhận đó. Không còn cá nhân hóa bằng `?name=`. Thiệp dùng noindex và no-referrer để hạn chế máy tìm kiếm và lộ URL qua nội dung nhúng. Ai có link vẫn có thể xem hoặc chuyển tiếp; đây là link khó đoán, không phải đăng nhập.
 
 ## Xuất bản miễn phí trên GitHub Pages
 

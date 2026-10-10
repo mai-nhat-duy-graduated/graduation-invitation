@@ -5,3 +5,8 @@ _site/
 .env
 .env.*
 supabase/.temp/
+
+# Private guest roster and bearer invitation links
+resources/guest.tsv
+resources/guest-private.json
+resources/guest-links.tsv

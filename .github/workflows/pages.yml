@@ -25,6 +25,7 @@ jobs:
         run: |
           node --check config.js
           node --check app.js
+          node --check guest-copy.js
           node --check photo-core.js
           node --check photo-submit.js
           node --check random.js
@@ -33,10 +34,14 @@ jobs:
       - name: Prepare public files
         run: |
           mkdir _site
-          cp index.html random.html styles.css app.js config.js photo-core.js photo-submit.js random.js _site/
+          cp index.html random.html styles.css app.js config.js guest-copy.js photo-core.js photo-submit.js random.js _site/
           cp -R assets _site/assets
           cp -R memes _site/memes
           cp -R music _site/music
+      - name: Build private invitations
+        env:
+          INVITATION_GUESTS: ${{ secrets.INVITATION_GUESTS }}
+        run: node scripts/build-guests.mjs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:

@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const form = document.querySelector('#photo-form');
-  const guest = new URLSearchParams(location.search).get('name')?.trim().slice(0, 80) || 'bạn';
+  const guest = window.INVITATION_GUEST?.name || 'bạn';
   const file = document.querySelector('#photo-file');
   const description = document.querySelector('#photo-description');
   const status = document.querySelector('#photo-status');

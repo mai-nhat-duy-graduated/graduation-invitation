@@ -3,7 +3,9 @@
   const config = window.INVITATION;
   const $ = (selector) => document.querySelector(selector);
   const setAll = (selector, value) => document.querySelectorAll(selector).forEach(el => { el.textContent = value; });
-  const guest = new URLSearchParams(location.search).get('name')?.trim().slice(0, 80) || 'bạn';
+  const recipient = window.INVITATION_GUEST;
+  const wording = window.InvitationCopy.copy(recipient);
+  const guest = wording.greeting;
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const ceremony = new Date(config.ceremony);
   const validDate = Number.isFinite(ceremony.getTime());
@@ -11,7 +13,7 @@
   const format = (options) => new Intl.DateTimeFormat('vi-VN', { timeZone, ...options }).format(ceremony);
   const safeUrl = (value) => {
     if (!value) return null;
-    try { const url = new URL(value, location.href); return ['https:', 'http:'].includes(url.protocol) ? url.href : null; } catch { return null; }
+    try { const url = new URL(value, document.baseURI); return ['https:', 'http:'].includes(url.protocol) ? url.href : null; } catch { return null; }
   };
   setAll('[data-guest]', guest);
   setAll('[data-graduate]', config.graduateName);
@@ -19,7 +21,12 @@
   setAll('[data-university]', config.university);
   document.title = `Lời mời tốt nghiệp · ${config.graduateName}`;
   $('meta[name="description"]').content = `Lời mời đến lễ tốt nghiệp của ${config.graduateName}, ${config.university}.`;
-  $('#personal-message').textContent = config.message;
+  $('.letter-lead').textContent = wording.lead;
+  $('#personal-message').textContent = wording.message;
+  $('#letter-closing').textContent = wording.closing;
+  $('#letter-signoff').textContent = wording.signoff;
+  $('#photo-title').textContent = wording.photoTitle;
+  $('#photo-intro').textContent = wording.photoDescription;
   const invitation = $('#invitation');
   const letterOpen = $('#letter-open');
   const letterClose = $('#letter-close');
