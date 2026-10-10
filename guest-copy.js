@@ -2,7 +2,7 @@
   'use strict';
   function copy(guest) {
     const role = guest?.role || 'bạn';
-    const self = role === 'em' ? 'Anh' : role === 'bạn' ? 'Mình' : 'Em';
+    const self = role === 'em' ? 'Anh' : role === 'bạn' ? 'Tui' : 'Em';
     const you = role === 'bạn' ? 'bạn' : role;
     const polite = ['anh', 'chị'].includes(role);
     const titleYou = role === 'bạn' ? '' : `${role[0].toUpperCase() + role.slice(1)} `;
