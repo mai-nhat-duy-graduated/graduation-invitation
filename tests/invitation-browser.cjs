@@ -76,7 +76,7 @@ const path = require('node:path');
     await page.setViewportSize({ width: 320, height: 740 });
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto(guestUrl);
-    assert.match(await page.locator('.envelope-address').innerText(), /chị Nguyễn/);
+    assert.match(await page.locator('.envelope-address').innerText(), /chị Nguyễn/i);
     const nameBox = await page.locator('.envelope-address').boundingBox();
     const sealBox = await page.locator('.envelope-seal').boundingBox();
     assert.ok(nameBox.y + nameBox.height < sealBox.y, 'Long recipient name stays above the seal');

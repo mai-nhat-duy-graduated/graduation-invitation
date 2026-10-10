@@ -16,8 +16,11 @@
     try { const url = new URL(value, document.baseURI); return ['https:', 'http:'].includes(url.protocol) ? url.href : null; } catch { return null; }
   };
   setAll('[data-guest]', guest);
-  $('.envelope-address').classList.toggle('long-name', guest.length > 32);
-  $('.envelope-address').classList.toggle('very-long-name', guest.length > 55);
+  const envelopeGuest = wording.envelopeGreeting || guest;
+  const envelopeGuestEl = $('.envelope-address [data-guest]');
+  if (envelopeGuestEl) envelopeGuestEl.textContent = envelopeGuest;
+  $('.envelope-address').classList.toggle('long-name', envelopeGuest.length > 32);
+  $('.envelope-address').classList.toggle('very-long-name', envelopeGuest.length > 55);
   setAll('[data-graduate]', config.graduateName);
   setAll('[data-initials]', config.initials);
   setAll('[data-university]', config.university);

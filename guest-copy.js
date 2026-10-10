@@ -5,8 +5,10 @@
     const self = role === 'em' ? 'Anh' : role === 'bạn' ? 'Mình' : 'Em';
     const you = role === 'bạn' ? 'bạn' : role;
     const polite = ['anh', 'chị'].includes(role);
+    const titleYou = role === 'bạn' ? '' : `${role[0].toUpperCase() + role.slice(1)} `;
     return {
       greeting: guest ? `${role === 'bạn' ? '' : `${you} `}${guest.name}` : 'bạn',
+      envelopeGreeting: guest ? `${titleYou}${guest.name}` : 'bạn',
       lead: `${self} sắp tốt nghiệp rồi${polite ? ' ạ' : ''}!`,
       message: `${self} mời ${you} đến chung vui và chụp vài tấm ảnh kỷ niệm trong ngày tốt nghiệp.`,
       closing: `Nếu đến được, ${you} nhắn ${self.toLowerCase()} biết hen!`,
