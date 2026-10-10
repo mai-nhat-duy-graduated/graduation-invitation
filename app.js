@@ -26,12 +26,28 @@
   setAll('[data-university]', config.university);
   document.title = `Lời mời tốt nghiệp · ${config.graduateName}`;
   $('meta[name="description"]').content = `Lời mời đến lễ tốt nghiệp của ${config.graduateName}, ${config.university}.`;
+  const heroLink = $('#hero-invitation-link') || $('.sky-hero-bottom a[href="#invitation"]');
+  if (heroLink && wording.heroLink) {
+    heroLink.innerHTML = `${wording.heroLink} <span aria-hidden="true">↓</span>`;
+  }
   $('.letter-lead').textContent = wording.lead;
   $('#personal-message').textContent = wording.message;
   $('#letter-closing').textContent = wording.closing;
   $('#letter-signoff').textContent = wording.signoff;
+  if ($('#parking-note') && wording.parking) {
+    $('#parking-note').textContent = wording.parking;
+  }
+  if ($('#memory-desc') && wording.memory) {
+    $('#memory-desc').textContent = wording.memory;
+  }
   $('#photo-title').textContent = wording.photoTitle;
   $('#photo-intro').textContent = wording.photoDescription;
+  if ($('#photo-preview') && wording.photoPreviewAlt) {
+    $('#photo-preview').alt = wording.photoPreviewAlt;
+  }
+  if ($('#photo-hint') && wording.photoHint) {
+    $('#photo-hint').textContent = wording.photoHint;
+  }
   const letterOpen = $('#letter-open');
   const gate = $('#letter-gate');
   const content = $('#invitation-content');

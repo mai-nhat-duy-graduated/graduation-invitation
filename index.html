@@ -74,7 +74,7 @@
           </h1>
           <p class="hero-dedication"></p>
         </div>
-        <div class="sky-hero-bottom"><span id="hero-date">17.10.2026</span><a href="#invitation">MỘT LỜI MỜI DÀNH RIÊNG
+        <div class="sky-hero-bottom"><span id="hero-date">17.10.2026</span><a href="#invitation" id="hero-invitation-link">MỘT LỜI MỜI DÀNH RIÊNG
             CHO BẠN <span aria-hidden="true">↓</span></a><span data-university>Đại học Tôn Đức Thắng</span></div>
       </section>
       <section class="personal-section" id="invitation" aria-labelledby="letter-title">
@@ -146,7 +146,7 @@
           </article>
           <article class="arrival-card"><span class="arrival-number">02 / TRƯỚC KHI VÀO TRƯỜNG</span>
             <h3>Gửi xe ở đâu?</h3>
-            <p>Xem video hướng dẫn chỗ gửi xe trước khi đến. Hẹn bạn ở trong khuôn viên trường!</p>
+            <p id="parking-note">Xem video hướng dẫn chỗ gửi xe trước khi đến. Hẹn bạn ở trong khuôn viên trường!</p>
             <div class="parking-video" id="parking-video">
               <iframe id="parking-frame"
                 src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D1314719846733240&amp;show_text=false&amp;width=420"
@@ -168,7 +168,7 @@
         <div>
           <p class="eyebrow">MỘT THỜI ĐỂ NHỚ</p>
           <h2>Những năm tháng<br><em>thật đẹp.</em></h2>
-          <p>Thanh xuân có những người bạn, những bài học, và cả những giấc mơ. Cảm ơn bạn đã cùng mình đi qua một phần
+          <p id="memory-desc">Thanh xuân có những người bạn, những bài học, và cả những giấc mơ. Cảm ơn bạn đã cùng mình đi qua một phần
             hành trình này.</p>
         </div>
       </section>
@@ -185,7 +185,7 @@
           </div>
           <label for="photo-description">Mô tả kiểu chụp (tùy chọn)<textarea id="photo-description" name="description"
               maxlength="500" rows="3" placeholder="Ví dụ: Cùng tung mũ tốt nghiệp"></textarea></label>
-          <p class="field-hint">Ảnh và lời nhắn được lưu riêng để Duy xem và random khi chụp cùng bạn.</p>
+          <p class="field-hint" id="photo-hint">Ảnh và lời nhắn được lưu riêng để Duy xem và random khi chụp cùng bạn.</p>
           <button id="photo-send" class="button primary" type="submit">Gửi kiểu chụp ↗</button>
           <p id="photo-status" role="status" aria-live="polite"></p>
         </form>

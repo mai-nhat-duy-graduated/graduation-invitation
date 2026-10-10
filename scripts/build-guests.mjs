@@ -8,17 +8,21 @@ export function slug(name) {
 }
 export function prepare(source, previous = []) {
   const lines = source.trim().split(/\r?\n/);
-  if (lines.shift() !== 'name\trole') throw new Error('Expected name and role TSV columns');
+  const header = lines.shift()?.trim();
+  if (header !== 'name\trole' && header !== 'name\trole\tpronoun') throw new Error('Expected name and role TSV columns');
   const seen = new Set();
   return lines.map(line => {
-    const [rawName, rawRole, extra] = line.split('\t');
+    const [rawName, rawRole, rawPronoun, extra] = line.split('\t');
     const name = rawName?.trim(), role = rawRole?.trim().toLowerCase();
+    const pronoun = rawPronoun?.trim() || undefined;
     if (!name || !['em', 'bạn', 'anh', 'chị'].includes(role) || extra !== undefined) throw new Error('Invalid guest row');
     if (seen.has(name)) throw new Error('Duplicate guest name');
     seen.add(name);
     const existing = previous.find(guest => guest.name === name);
     const token = existing?.token || randomBytes(16).toString('hex');
-    return { name, role, token, suffix: `${slug(name)}_${token}` };
+    const guestObj = { name, role, token, suffix: `${slug(name)}_${token}` };
+    if (pronoun) guestObj.pronoun = pronoun;
+    return guestObj;
   });
 }
 export function renderGuests(guests, html, output) {
@@ -29,7 +33,9 @@ export function renderGuests(guests, html, output) {
     seen.add(guest.suffix);
   }
   for (const guest of guests) {
-    const data = JSON.stringify({name: guest.name, role: guest.role}).replace(/</g, '\\u003c');
+    const guestData = { name: guest.name, role: guest.role };
+    if (guest.pronoun) guestData.pronoun = guest.pronoun;
+    const data = JSON.stringify(guestData).replace(/</g, '\\u003c');
     const page = html.replace(/referrerpolicy="[^"]*"/g, 'referrerpolicy="no-referrer"').replace(/href="(#[^"]*)"/g, `href="${guest.suffix}/$1"`).replace('<head>', '<head>\n  <base href="../">\n  <meta name="robots" content="noindex, nofollow, noarchive">\n  <meta name="referrer" content="no-referrer">')
       .replace('<script src="config.js"', `<script>window.INVITATION_GUEST = ${data};</script>\n  <script src="config.js"`);
     const directory = resolve(output, guest.suffix);
@@ -44,7 +50,7 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
     const guests = prepare(readFileSync('resources/guest.tsv', 'utf8'), previous);
     writeFileSync(path, JSON.stringify(guests, null, 2) + '\n', {mode: 0o600});
     const base = 'https://mai-nhat-duy-graduated.github.io/graduation-invitation/';
-    writeFileSync('resources/guest-links.tsv', 'name\trole\turl\n' + guests.map(g => `${g.name}\t${g.role}\t${base}${g.suffix}/`).join('\n') + '\n', {mode: 0o600});
+    writeFileSync('resources/guest-links.tsv', 'name\trole\tpronoun\turl\n' + guests.map(g => `${g.name}\t${g.role}\t${g.pronoun || ''}\t${base}${g.suffix}/`).join('\n') + '\n', {mode: 0o600});
     console.log(`Prepared ${guests.length} private invitation links.`);
   } else {
     const data = process.env.INVITATION_GUESTS || readFileSync('resources/guest-private.json', 'utf8');
