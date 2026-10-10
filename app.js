@@ -32,12 +32,20 @@
   const letterOpen = $('#letter-open');
   const gate = $('#letter-gate');
   const content = $('#invitation-content');
+  const envelope = $('.sealed-envelope');
   let state = 'closed';
   let startMusic = () => {};
   content.inert = true;
   content.setAttribute('aria-hidden', 'true');
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   window.scrollTo({ top: 0, behavior: 'instant' });
+  if (envelope) {
+    envelope.addEventListener('click', (e) => {
+      if (state === 'closed' && e.target !== letterOpen && !letterOpen.contains(e.target)) {
+        letterOpen.click();
+      }
+    });
+  }
   letterOpen.addEventListener('click', () => {
     if (state !== 'closed') return;
     state = 'opening';
