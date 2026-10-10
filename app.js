@@ -62,7 +62,8 @@
   letterContent.addEventListener('keydown', event => {
     if (event.key === 'Escape') { event.preventDefault(); setLetterOpen(false); }
   });
-  $('#event-venue').textContent = config.venue === config.university ? 'Cùng mình lưu lại khoảnh khắc đáng nhớ.' : config.venue;
+  $('#event-venue').textContent = config.venue || '';
+  $('#event-venue').hidden = !config.venue || config.venue === config.university;
   $('#event-address').textContent = config.address;
   const mapsUrl = safeUrl(config.mapsUrl);
   if (mapsUrl) $('#maps-link').href = mapsUrl;
@@ -82,7 +83,6 @@
     $('#event-day').textContent = '—';
     $('#event-weekday').textContent = 'Sẽ cập nhật';
     $('#event-time').textContent = 'Giờ tổ chức sẽ được cập nhật';
-    $('#calendar-button').hidden = true;
   }
   let countdownTimer;
   function updateCountdown() {
@@ -90,11 +90,7 @@
     const total = Math.floor(remaining / 1000);
     const values = [Math.floor(total / 86400), Math.floor(total / 3600) % 24, Math.floor(total / 60) % 60, total % 60];
     ['days', 'hours', 'minutes', 'seconds'].forEach((id, i) => { $(`#${id}`).textContent = String(values[i]).padStart(2, '0'); });
-    if (!validDate) $('#countdown-label').textContent = 'Ngày vui sẽ sớm được cập nhật';
-    else if (!remaining) {
-      $('#countdown-label').textContent = Date.now() < ceremony.getTime() + config.durationMinutes * 60000 ? 'Ngày vui đã đến. Hẹn gặp bạn!' : 'Cảm ơn bạn đã cùng mình lưu giữ ngày vui.';
-      clearInterval(countdownTimer);
-    }
+    if (!remaining) clearInterval(countdownTimer);
   }
   updateCountdown();
   if (validDate && ceremony.getTime() > Date.now()) countdownTimer = setInterval(updateCountdown, 1000);
@@ -112,31 +108,6 @@
     }), { threshold: .08 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
   }
-  const icsEscape = value => String(value).replaceAll('\\', '\\\\').replaceAll('\r', '').replaceAll('\n', '\\n').replaceAll(';', '\\;').replaceAll(',', '\\,');
-  const icsDate = date => date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
-  $('#calendar-button').addEventListener('click', () => {
-    if (!validDate) return;
-    const end = new Date(ceremony.getTime() + config.durationMinutes * 60000);
-    const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Graduation Invitation//VI', 'CALSCALE:GREGORIAN', 'BEGIN:VEVENT',
-      `UID:graduation-${ceremony.getTime()}@${location.hostname}`, `DTSTAMP:${icsDate(new Date())}`, `DTSTART:${icsDate(ceremony)}`, `DTEND:${icsDate(end)}`,
-      `SUMMARY:${icsEscape(`Lễ tốt nghiệp · ${config.graduateName}`)}`, `LOCATION:${icsEscape(`${config.venue} — ${config.address}`)}`, `DESCRIPTION:${icsEscape(`Hẹn gặp bạn trong ngày tốt nghiệp! ${mapsUrl || ''}`)}`, 'END:VEVENT', 'END:VCALENDAR'];
-    // Fold long UTF-8 lines at 75 octets as required by calendar clients.
-    const encoder = new TextEncoder();
-    const folded = lines.map(line => {
-      let output = '', part = '', length = 0;
-      for (const char of line) {
-        const size = encoder.encode(char).length;
-        if (length + size > 75) { output += `${part}\r\n`; part = ' '; length = 1; }
-        part += char; length += size;
-      }
-      return output + part;
-    });
-    const url = URL.createObjectURL(new Blob([folded.join('\r\n') + '\r\n'], { type: 'text/calendar;charset=utf-8' }));
-    const link = document.createElement('a');
-    link.href = url; link.download = 'le-tot-nghiep.ics'; link.click();
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
-    toast('Đã tạo lịch hẹn. Mở file để lưu vào lịch của bạn nhé.');
-  });
   const campusUrl = safeUrl(config.campusMapUrl);
   const campusSource = safeUrl(config.campusMapSource);
   const campusPreview = safeUrl(config.campusMapPreviewUrl);

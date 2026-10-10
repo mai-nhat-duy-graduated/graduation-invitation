@@ -12,7 +12,7 @@ Chuẩn bị `_site/` theo phần **Ảnh mẫu và chạy thử** bên dưới 
 
 ## Cập nhật nội dung
 
-Sửa `config.js`: tên, chữ viết tắt, trường, thời gian ISO có múi giờ `+07:00`, địa điểm, link Maps và lời nhắn. Thời gian hiển thị luôn theo Việt Nam dù khách đang ở nước khác. `durationMinutes` là thời lượng dùng khi lưu lịch (mặc định 120 phút, chỉnh theo buổi lễ thực tế).
+Sửa `config.js`: tên, chữ viết tắt, trường, thời gian ISO có múi giờ `+07:00`, địa điểm, link Maps và lời nhắn. Thời gian hiển thị luôn theo Việt Nam dù khách đang ở nước khác.
 
 - **Ảnh cá nhân:** đặt ảnh vào `assets/`, gán `portraitUrl: 'assets/portrait.jpg'`. Khối ảnh chỉ hiện khi có ảnh; nên dùng ảnh WebP/JPEG dưới 500 KB.
 - **Nhạc:** đặt file vào `music/` và gán `musicUrl` (hiện dùng `music/Cosmic Echoes.mp3`). Nhạc phát nền, âm lượng 35%, lặp lại và tự phát khi vào trang; nếu trình duyệt chặn tự phát, nhạc bật sau lần chạm hoặc nhấn phím đầu tiên. Nút ♫/Ⅱ bật hoặc tạm dừng nhạc; lựa chọn tắt nhạc của khách được giữ khi mở thiệp lần nữa.
@@ -41,13 +41,13 @@ Workflow chỉ đóng gói file giao diện công khai, `assets/`, `memes/` và 
 
 ## Trải nghiệm
 
-Phần lời nhắn là một phong thư xanh có dấu niêm phong vàng. Chạm phong thư (hoặc nhấn Enter/Space khi dùng bàn phím) để tách dấu sáp, lật nắp và mở tờ giấy chứa lời mời cá nhân hóa. Dùng **Gấp thư lại** hoặc Escape để đóng thư. Chế độ giảm chuyển động hiển thị ngay trạng thái mới; khi tắt JavaScript, nội dung thư vẫn hiện. Các phần bên dưới xuất hiện khi cuộn, đồng hồ đếm ngược, link Maps, tải lịch `.ics`, link cá nhân hóa và hỗ trợ giảm chuyển động. Ảnh và nhạc là tùy chọn. Font tải từ Google Fonts, có font hệ thống dự phòng; các tương tác cơ bản chạy bằng JavaScript thuần; video gửi xe dùng trình phát Facebook.
+Phần lời nhắn là một phong thư xanh có dấu niêm phong vàng. Chạm phong thư (hoặc nhấn Enter/Space khi dùng bàn phím) để tách dấu sáp, lật nắp và mở tờ giấy chứa lời mời cá nhân hóa. Dùng **Gấp thư lại** hoặc Escape để đóng thư. Chế độ giảm chuyển động hiển thị ngay trạng thái mới; khi tắt JavaScript, nội dung thư vẫn hiện. Các phần bên dưới xuất hiện khi cuộn, đồng hồ đếm ngược, link Maps, link cá nhân hóa và hỗ trợ giảm chuyển động. Ảnh và nhạc là tùy chọn. Font tải từ Google Fonts, có font hệ thống dự phòng; các tương tác cơ bản chạy bằng JavaScript thuần; video gửi xe dùng trình phát Facebook.
 
 ## Bản đồ khuôn viên và hướng dẫn gửi xe
 
 Google Maps được nhúng ngay dưới thông tin buổi lễ. `mapsEmbedUrl` trong `config.js` cấu hình bản đồ nhúng (để trống để ẩn); `mapsUrl` giữ link mở ứng dụng để xem đường đi. Khi đổi địa điểm, cập nhật cả hai link.
 
-Phần **Tìm đường, hẹn gặp** dùng một ảnh tĩnh lấy từ bản đồ khuôn viên trên https://discovery.tdtu.edu.vn/. Có 20 điểm đánh dấu và tên khu vực được vẽ cố định trên ảnh, theo đúng tọa độ hotspot của bản đồ trường. Không nhúng website trường, không có trình xem 3D hoặc chuyển động.
+Phần **Thông tin cần thiết** dùng một ảnh tĩnh lấy từ bản đồ khuôn viên trên https://discovery.tdtu.edu.vn/. Có 20 điểm đánh dấu và tên khu vực được vẽ cố định trên ảnh, theo đúng tọa độ hotspot của bản đồ trường. Không nhúng website trường, không có trình xem 3D hoặc chuyển động.
 
 - `assets/tdtu-campus-map.jpg`: ảnh đầy đủ **11285 × 6684 pixel**, khoảng **4.2 MB**, ghép từ các mảnh ảnh gốc của trường. Khách chạm vào ảnh hoặc **Xem ảnh bản đồ** để mở ảnh trong tab riêng và phóng to trên điện thoại.
 - `assets/tdtu-campus-map-preview.webp`: ảnh xem trước **1500 × 888 pixel**, khoảng **152 KB**, được tải khi cuộn gần phần bản đồ. Ảnh đầy đủ chỉ tải khi khách mở.
