@@ -1,0 +1,142 @@
+[
+  {
+    "label": "NHÀ D",
+    "x": 707.62,
+    "y": 543.81,
+    "sourcePan": 4.77,
+    "sourceTilt": -11.21
+  },
+  {
+    "label": "NHÀ E",
+    "x": 643.74,
+    "y": 599.25,
+    "sourcePan": 11.96,
+    "sourceTilt": -17.45
+  },
+  {
+    "label": "NHÀ A",
+    "x": 473.79,
+    "y": 538.39,
+    "sourcePan": 31.09,
+    "sourceTilt": -10.6
+  },
+  {
+    "label": "NHÀ B",
+    "x": 566.18,
+    "y": 561.49,
+    "sourcePan": 20.69,
+    "sourceTilt": -13.2
+  },
+  {
+    "label": "NHÀ C",
+    "x": 401.64,
+    "y": 494.5,
+    "sourcePan": 39.21,
+    "sourceTilt": -5.66
+  },
+  {
+    "label": "NHÀ G",
+    "x": 307.91,
+    "y": 447.42,
+    "sourcePan": 49.76,
+    "sourceTilt": -0.36
+  },
+  {
+    "label": "NHÀ F",
+    "x": 374.46,
+    "y": 397.04,
+    "sourcePan": 42.27,
+    "sourceTilt": 5.31
+  },
+  {
+    "label": "TƯỢNG BÁC TÔN",
+    "x": 430.16,
+    "y": 577.84,
+    "sourcePan": 36.0,
+    "sourceTilt": -15.04
+  },
+  {
+    "label": "SÂN VẬN ĐỘNG",
+    "x": 812.28,
+    "y": 489.0,
+    "sourcePan": -7.01,
+    "sourceTilt": -5.04
+  },
+  {
+    "label": "NHÀ THI ĐẤU",
+    "x": 701.67,
+    "y": 387.45,
+    "sourcePan": 5.44,
+    "sourceTilt": 6.39
+  },
+  {
+    "label": "NHÀ I",
+    "x": 1035.72,
+    "y": 383.0,
+    "sourcePan": -32.16,
+    "sourceTilt": 6.89
+  },
+  {
+    "label": "NHÀ H",
+    "x": 978.86,
+    "y": 391.27,
+    "sourcePan": -25.76,
+    "sourceTilt": 5.96
+  },
+  {
+    "label": "TRUNG TÂM QUỐC PHÒNG",
+    "x": 508.79,
+    "y": 326.14,
+    "sourcePan": 27.15,
+    "sourceTilt": 13.29
+  },
+  {
+    "label": "NHÀ K",
+    "x": 594.43,
+    "y": 257.2,
+    "sourcePan": 17.51,
+    "sourceTilt": 21.05
+  },
+  {
+    "label": "NHÀ L",
+    "x": 546.9,
+    "y": 239.43,
+    "sourcePan": 22.86,
+    "sourceTilt": 23.05
+  },
+  {
+    "label": "SÂN TẬP GOLF",
+    "x": 789.27,
+    "y": 243.43,
+    "sourcePan": -4.42,
+    "sourceTilt": 22.6
+  },
+  {
+    "label": "VƯỜN ƯƠM",
+    "x": 899.08,
+    "y": 165.43,
+    "sourcePan": -16.78,
+    "sourceTilt": 31.38
+  },
+  {
+    "label": "TRƯỜNG VFIS",
+    "x": 1206.92,
+    "y": 286.88,
+    "sourcePan": -51.43,
+    "sourceTilt": 17.71
+  },
+  {
+    "label": "HỒ BƠI",
+    "x": 926.27,
+    "y": 446.62,
+    "sourcePan": -19.84,
+    "sourceTilt": -0.27
+  },
+  {
+    "label": "HỒ BƠI MỚI",
+    "x": 623.75,
+    "y": 367.81,
+    "sourcePan": 14.21,
+    "sourceTilt": 8.6
+  }
+]

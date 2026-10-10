@@ -1,0 +1,2 @@
+[functions.submit-photo-idea]
+verify_jwt = false

@@ -1,0 +1,5 @@
+Nguồn: https://discovery.tdtu.edu.vn/
+Ảnh sơ đồ khuôn viên: Đại học Tôn Đức Thắng.
+Lấy ngày 10/10/2026 từ node22, cf_0, l_5; ghép 322 mảnh JPEG gốc (510 px/mảnh).
+Kích thước gốc: 11285 x 6684 px. Ảnh JPEG tĩnh, không dùng player Pano2VR.
+20 điểm và tên khu vực lấy từ hotspot gốc trong pano.xml (node22); quy đổi tọa độ flat panorama rồi vẽ cố định lên ảnh.

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow"><title>Random kiểu chụp · Duy</title>
+  <link rel="icon" href="assets/favicon.svg"><link rel="stylesheet" href="styles.css">
+  <script src="config.js" defer></script><script src="photo-core.js" defer></script><script src="random.js" defer></script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="index.html">← Về thiệp mời</a><button id="logout" class="text-button" hidden>Đăng xuất</button></header>
+  <main class="random-main">
+    <p class="eyebrow">CHỤP MỘT TẤM, GIỮ MỘT KỶ NIỆM</p><h1>Hôm nay mình <em>chụp kiểu gì?</em></h1>
+    <form id="login-form" class="photo-form">
+      <label for="email">Email của Duy<input id="email" type="email" autocomplete="username" required></label>
+      <label for="password">Mật khẩu<input id="password" type="password" autocomplete="current-password" required></label>
+      <button id="login-button" class="button primary" type="submit">Đăng nhập</button>
+    </form>
+    <p id="auth-status" class="random-status" role="status"></p>
+    <section id="random-panel" aria-label="Random kiểu chụp" hidden>
+      <p id="source-status" class="random-status" role="status"></p>
+      <div class="random-actions"><button id="draw" class="button primary" disabled>Random kiểu tiếp theo</button><button id="reload" class="text-button">Tải lại nguồn</button><button id="reset" class="text-button">Bắt đầu lượt mới</button><span id="remaining" role="status"></span></div>
+      <p id="draw-status" class="random-status" role="status"></p>
+      <article id="result" class="random-result" hidden><img id="result-image" alt="Ảnh mẫu kiểu chụp"><h3 id="result-title"></h3><p id="result-description"></p></article>
+    </section>
+    <noscript>Bật JavaScript để đăng nhập và random kiểu chụp.</noscript>
+  </main>
+</body>
+</html>
