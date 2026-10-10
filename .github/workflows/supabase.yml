@@ -30,5 +30,10 @@ jobs:
           version: latest
       - name: Configure accepted website origins
         run: supabase secrets set "ALLOWED_ORIGINS=$ALLOWED_ORIGINS" --project-ref "$SUPABASE_PROJECT_REF"
+      - name: Configure login account
+        if: env.PHOTO_ADMIN_UID != ''
+        run: supabase secrets set "PHOTO_ADMIN_UID=$PHOTO_ADMIN_UID" --project-ref "$SUPABASE_PROJECT_REF"
       - name: Deploy submission endpoint
         run: supabase functions deploy submit-photo-idea --project-ref "$SUPABASE_PROJECT_REF" --no-verify-jwt
+      - name: Deploy username login
+        run: supabase functions deploy admin-login --project-ref "$SUPABASE_PROJECT_REF" --no-verify-jwt

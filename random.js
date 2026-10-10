@@ -83,9 +83,12 @@
     event.preventDefault(); if (!settings || $('#login-button').disabled) return;
     $('#login-button').disabled = true; authStatus.textContent = 'Đang đăng nhập…';
     try {
-      saveSession(await request('/auth/v1/token?grant_type=password', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: $('#email').value.trim(), password: $('#password').value }) }, false));
+      const username = $('#email').value.trim();
+      const path = username.includes('@') ? '/auth/v1/token?grant_type=password' : '/functions/v1/admin-login';
+      const credentials = username.includes('@') ? { email: username, password: $('#password').value } : { username, password: $('#password').value };
+      saveSession(await request(path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(credentials) }, false));
       $('#password').value = ''; await enter();
-    } catch { lock('Chưa đăng nhập được. Kiểm tra email, mật khẩu và kết nối mạng.'); }
+    } catch { lock('Chưa đăng nhập được. Kiểm tra tên đăng nhập, mật khẩu và kết nối mạng.'); }
     finally { $('#login-button').disabled = false; }
   });
   $('#logout').addEventListener('click', () => {

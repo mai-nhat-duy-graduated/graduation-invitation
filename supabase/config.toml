@@ -1,2 +1,5 @@
 [functions.submit-photo-idea]
 verify_jwt = false
+
+[functions.admin-login]
+verify_jwt = false

@@ -58,7 +58,7 @@ Các nhãn được tạo bằng `scripts/label-campus-map.py` (Python + Pillow)
 
 Khách gửi **tên + một ảnh bắt buộc**, mô tả tùy chọn ngay trên thiệp. Tên được điền từ `?name=` và có thể sửa. Ảnh JPEG/PNG/WebP tối đa 5 MB; mô tả tối đa 500 ký tự. Các bài gửi được lưu riêng trên Supabase, không lưu vào GitHub hay folder `memes/`.
 
-Duy mở `random.html`, đăng nhập và random chung từ **19 ảnh mẫu hiện tại trong `memes/` + các ảnh bạn bè gửi**. Mỗi ảnh có cơ hội được chọn bằng nhau. Lịch sử đã rút lưu trên từng trình duyệt/tài khoản; tải lại trang vẫn giữ lịch sử, không đồng bộ thiết bị. Khi hết lượt, bấm **Bắt đầu lượt mới**. **Tải lại nguồn** lấy bài gửi mới và giữ các ID đã rút. Nếu Supabase không tải được dữ liệu bạn bè, trang báo lỗi và vẫn cho dùng ảnh mẫu sau khi đăng nhập.
+Duy mở `random.html`, đăng nhập với tên `duy` (hoặc email Supabase) và mật khẩu tài khoản Auth, rồi random chung từ **19 ảnh mẫu hiện tại trong `memes/` + các ảnh bạn bè gửi**. Mỗi ảnh có cơ hội được chọn bằng nhau. Lịch sử đã rút lưu trên từng trình duyệt/tài khoản; tải lại trang vẫn giữ lịch sử, không đồng bộ thiết bị. Khi hết lượt, bấm **Bắt đầu lượt mới**. **Tải lại nguồn** lấy bài gửi mới và giữ các ID đã rút. Nếu Supabase không tải được dữ liệu bạn bè, trang báo lỗi và vẫn cho dùng ảnh mẫu sau khi đăng nhập.
 
 ### Thiết lập Supabase (một lần)
 
@@ -111,3 +111,5 @@ Workflow **Set up photo backend** có thể tạo bảng/bucket, cấp quyền v
 - Variable `PHOTO_ALLOWED_ORIGINS`: `https://mai-nhat-duy-graduated.github.io,http://localhost:4173,http://127.0.0.1:4173`.
 
 Chạy workflow thủ công tại **Actions → Set up photo backend → Run workflow**. Nếu chưa có tài khoản Auth, có thể chạy workflow trước để mở tính năng gửi ảnh; quyền xem ảnh vẫn bị khóa. Sau khi tạo tài khoản, đặt PHOTO_ADMIN_UID và chạy lại để cấp quyền. Script dùng Supabase Management API và transaction để chạy SQL, nên không cần đưa password database hoặc service-role key lên GitHub. Chạy trên dự án mới dành cho thiệp; script không xóa các admin đã được cấp trước đó. Hướng dẫn chính thức: [Supabase deploy qua GitHub Actions](https://supabase.com/docs/guides/functions/examples/github-actions).
+
+Tên đăng nhập `duy` được Edge Function `admin-login` ánh xạ đến tài khoản `PHOTO_ADMIN_UID` phía server. Mật khẩu được kiểm tra qua Supabase Auth, không lưu trong frontend/config/workflow. Đổi mật khẩu trong Supabase Authentication khi cần. Khi deploy bằng CLI thủ công, đặt secret `PHOTO_ADMIN_UID` và deploy thêm `admin-login --no-verify-jwt`.
