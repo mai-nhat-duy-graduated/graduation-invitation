@@ -141,30 +141,6 @@
     $('#memory').hidden = false;
     $('#portrait').addEventListener('error', () => { $('#memory').hidden = true; });
   }
-  const rsvp = safeUrl(config.rsvpUrl);
-  if (rsvp) {
-    $('#rsvp-link').href = rsvp; $('#rsvp-link').hidden = false;
-    $('#rsvp-description').textContent = 'Cho mình biết bạn sẽ đến nhé. Mình rất mong được gặp bạn trong ngày đặc biệt này.';
-  }
-  $('#share-form').addEventListener('submit', event => {
-    event.preventDefault();
-    const name = $('#guest-input').value.trim();
-    if (!name) { $('#guest-input').focus(); return; }
-    const url = new URL(location.href);
-    url.search = ''; url.hash = ''; url.searchParams.set('name', name);
-    $('#share-url').value = url.href;
-    $('#share-result').hidden = false;
-    $('#copy-status').textContent = 'Gửi link này để người nhận thấy tên riêng trên thiệp.';
-  });
-  $('#copy-link').addEventListener('click', async () => {
-    try {
-      await navigator.clipboard.writeText($('#share-url').value);
-      $('#copy-status').textContent = 'Đã sao chép link lời mời.';
-    } catch {
-      $('#share-url').focus(); $('#share-url').select();
-      $('#copy-status').textContent = 'Link đã được chọn. Bạn có thể sao chép thủ công.';
-    }
-  });
   const musicUrl = safeUrl(config.musicUrl);
   if (musicUrl) {
     const music = new Audio(musicUrl); music.loop = true; music.preload = 'auto'; music.volume = .35;

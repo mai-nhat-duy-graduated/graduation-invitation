@@ -16,18 +16,17 @@ Sửa `config.js`: tên, chữ viết tắt, trường, thời gian ISO có múi
 
 - **Ảnh cá nhân:** đặt ảnh vào `assets/`, gán `portraitUrl: 'assets/portrait.jpg'`. Khối ảnh chỉ hiện khi có ảnh; nên dùng ảnh WebP/JPEG dưới 500 KB.
 - **Nhạc:** đặt file vào `music/` và gán `musicUrl` (hiện dùng `music/Cosmic Echoes.mp3`). Nhạc phát nền, âm lượng 35%, lặp lại và tự phát khi vào trang; nếu trình duyệt chặn tự phát, nhạc bật sau lần chạm hoặc nhấn phím đầu tiên. Nút ♫/Ⅱ bật hoặc tạm dừng nhạc; lựa chọn tắt nhạc của khách được giữ khi mở thiệp lần nữa.
-- **Xác nhận tham dự:** tạo Google Forms với tên và lựa chọn tham dự, rồi gán link người trả lời vào `rsvpUrl`. Khi chưa có link, thiệp mời khách nhắn trực tiếp; website không tự thu thập hay lưu phản hồi.
 - Thẻ mô tả và nội dung `<noscript>` trong `index.html` là dự phòng cho trình thu thập và thiết bị tắt JavaScript; cập nhật chúng khi thay đổi buổi lễ.
 
 ## Link dành riêng cho từng người
 
-Dùng phần **Tạo link** cuối trang, hoặc thêm `?name=` với tên đã URL-encode:
+Thêm `?name=` với tên đã URL-encode vào đường dẫn thiệp:
 
 ```text
 https://mai-nhat-duy-graduated.github.io/graduation-invitation/?name=Minh
 ```
 
-Tên được đưa vào trang bằng `textContent`, tối đa 80 ký tự. Tên trong URL có thể được chia sẻ cùng đường link, nên chỉ dùng tên gọi thân mật, tránh thông tin nhạy cảm. Link sao chép trên bản localhost chỉ dùng thử; tạo link trên website đã xuất bản để gửi cho khách.
+Tên được đưa vào trang bằng `textContent`, tối đa 80 ký tự. Tên trong URL có thể được chia sẻ cùng đường link, nên chỉ dùng tên gọi thân mật, tránh thông tin nhạy cảm. Dùng đường dẫn website đã xuất bản để tạo thiệp riêng và gửi cho khách.
 
 ## Xuất bản miễn phí trên GitHub Pages
 
@@ -41,7 +40,7 @@ Workflow chỉ đóng gói file giao diện công khai, `assets/`, `memes/` và 
 
 ## Trải nghiệm
 
-Phần lời nhắn là một phong thư xanh có dấu niêm phong vàng. Chạm phong thư (hoặc nhấn Enter/Space khi dùng bàn phím) để tách dấu sáp, lật nắp và mở tờ giấy chứa lời mời cá nhân hóa. Dùng **Gấp thư lại** hoặc Escape để đóng thư. Chế độ giảm chuyển động hiển thị ngay trạng thái mới; khi tắt JavaScript, nội dung thư vẫn hiện. Các phần bên dưới xuất hiện khi cuộn, đồng hồ đếm ngược, link Maps, link cá nhân hóa và hỗ trợ giảm chuyển động. Ảnh và nhạc là tùy chọn. Font tải từ Google Fonts, có font hệ thống dự phòng; các tương tác cơ bản chạy bằng JavaScript thuần; video gửi xe dùng trình phát Facebook.
+Phần lời nhắn là một phong thư xanh có dấu niêm phong vàng. Chạm phong thư (hoặc nhấn Enter/Space khi dùng bàn phím) để tách dấu sáp, lật nắp và mở tờ giấy chứa lời mời cá nhân hóa. Dùng **Gấp thư lại** hoặc Escape để đóng thư. Chế độ giảm chuyển động hiển thị ngay trạng thái mới; khi tắt JavaScript, nội dung thư vẫn hiện. Các phần bên dưới xuất hiện khi cuộn, đồng hồ đếm ngược, link Maps và hỗ trợ giảm chuyển động. Phần kết thiệp chỉ ghi “Phải đến nhé”. Ảnh và nhạc là tùy chọn. Font tải từ Google Fonts, có font hệ thống dự phòng; các tương tác cơ bản chạy bằng JavaScript thuần; video gửi xe dùng trình phát Facebook.
 
 ## Bản đồ khuôn viên và hướng dẫn gửi xe
 

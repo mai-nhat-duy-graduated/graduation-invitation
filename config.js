@@ -20,8 +20,6 @@ window.INVITATION = {
   message: 'Một hành trình khép lại, một hành trình mới bắt đầu. Và ở khoảnh khắc đặc biệt này, mình muốn có bạn ở bên. Cảm ơn bạn vì đã là một phần thật đẹp trong những năm tháng vừa qua.',
   // Thêm đường dẫn ảnh trong assets/, ví dụ: 'assets/portrait.jpg'.
   portraitUrl: '',
-  // Dán link Google Forms để nhận RSVP. Để trống sẽ hiển thị lời nhắn liên hệ trực tiếp.
-  rsvpUrl: '',
   // Nhạc nền từ thư mục music/, phát khi khách mở thiệp.
   musicUrl: 'music/Cosmic Echoes.mp3',
 };
