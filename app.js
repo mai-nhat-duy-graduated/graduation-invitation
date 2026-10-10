@@ -191,37 +191,21 @@
     }
     music.addEventListener('error', () => { musicState(false); toast('Chưa tải được nhạc nền.'); });
     button.addEventListener('click', async () => {
+      musicInteracted = true;
       if (!music.paused) { music.pause(); musicState(false); return; }
-      try { await music.play(); musicState(true); } catch { musicState(false); toast('Chưa phát được nhạc. Bạn thử lại nhé.'); }
+      await playMusic();
     });
-  } else if (/^[A-Za-z0-9_-]{11}$/.test(config.musicYouTubeId || '')) {
-    const button = $('#music-toggle');
-    const panel = $('#music-player');
-    const frame = $('#music-frame');
-    const videoId = config.musicYouTubeId;
-    const embed = new URL(`https://www.youtube-nocookie.com/embed/${videoId}`);
-    embed.searchParams.set('autoplay', '1');
-    embed.searchParams.set('playsinline', '1');
-    embed.searchParams.set('loop', '1');
-    embed.searchParams.set('playlist', videoId);
-    $('#music-source').href = `https://www.youtube.com/watch?v=${videoId}`;
-    button.hidden = false;
-    button.removeAttribute('aria-pressed');
-    button.setAttribute('aria-controls', 'music-player');
-    button.setAttribute('aria-expanded', 'false');
-    button.setAttribute('aria-label', 'Mở nhạc nền trên YouTube');
-    function toggleMusicPlayer(open) {
-      panel.hidden = !open;
-      button.setAttribute('aria-expanded', String(open));
-      button.setAttribute('aria-label', open ? 'Đóng trình phát và dừng nhạc' : 'Mở nhạc nền trên YouTube');
-      button.textContent = open ? '×' : '♫';
-      if (open) frame.src = embed.href;
-      else { frame.removeAttribute('src'); button.focus({ preventScroll: true }); }
+    let musicInteracted = false;
+    async function playMusic() {
+      try { await music.play(); musicState(true); }
+      catch { musicState(false); toast('Bấm nút ♫ để bật nhạc nhé.'); }
     }
-    button.addEventListener('click', () => toggleMusicPlayer(panel.hidden));
-    $('#music-close').addEventListener('click', () => toggleMusicPlayer(false));
-    panel.addEventListener('keydown', event => {
-      if (event.key === 'Escape') toggleMusicPlayer(false);
-    });
+    function playOnOpen() {
+      if (musicInteracted) return;
+      musicInteracted = true;
+      void playMusic();
+    }
+    $('#hero-open').addEventListener('click', playOnOpen);
+    $('#envelope-open').addEventListener('click', playOnOpen);
   }
 })();

@@ -15,7 +15,7 @@ Chuẩn bị `_site/` theo phần **Ảnh mẫu và chạy thử** bên dưới 
 Sửa `config.js`: tên, chữ viết tắt, trường, thời gian ISO có múi giờ `+07:00`, địa điểm, link Maps và lời nhắn. Thời gian hiển thị luôn theo Việt Nam dù khách đang ở nước khác. `durationMinutes` là thời lượng dùng khi lưu lịch (mặc định 120 phút, chỉnh theo buổi lễ thực tế).
 
 - **Ảnh cá nhân:** đặt ảnh vào `assets/`, gán `portraitUrl: 'assets/portrait.jpg'`. Khối ảnh chỉ hiện khi có ảnh; nên dùng ảnh WebP/JPEG dưới 500 KB.
-- **Nhạc:** đặt file bạn có quyền sử dụng vào `assets/`, gán `musicUrl: 'assets/music.mp3'`. Hoặc đặt `musicYouTubeId` để dùng video YouTube gốc: nút ♫ mở trình phát nổi, khách có thể nghe khi cuộn trang và đóng để dừng. Video lặp lại; nếu trình duyệt chặn phát tự động, nhấn Play trong trình phát. Không tải file từ YouTube. `musicUrl` được ưu tiên khi có cả hai nguồn.
+- **Nhạc:** đặt file vào `music/` và gán `musicUrl` (hiện dùng `music/Cosmic Echoes.mp3`). Nhạc phát nền, âm lượng 35%, lặp lại khi khách mở thiệp. Nút ♫/Ⅱ bật hoặc tạm dừng nhạc; lựa chọn tắt nhạc của khách được giữ khi mở thiệp lần nữa.
 - **Xác nhận tham dự:** tạo Google Forms với tên và lựa chọn tham dự, rồi gán link người trả lời vào `rsvpUrl`. Khi chưa có link, thiệp mời khách nhắn trực tiếp; website không tự thu thập hay lưu phản hồi.
 - Thẻ mô tả và nội dung `<noscript>` trong `index.html` là dự phòng cho trình thu thập và thiết bị tắt JavaScript; cập nhật chúng khi thay đổi buổi lễ.
 
@@ -37,7 +37,7 @@ Tên được đưa vào trang bằng `textContent`, tối đa 80 ký tự. Tên
 4. Sau khi workflow thành công, website sẽ ở:
    **https://mai-nhat-duy-graduated.github.io/graduation-invitation/**
 
-Workflow chỉ đóng gói file giao diện công khai, `assets/` và `memes/`; không xuất bản README hay các file dự án khác. Giữ repository public để dùng Pages với gói GitHub Free. Hướng dẫn chính thức: https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages
+Workflow chỉ đóng gói file giao diện công khai, `assets/`, `memes/` và `music/`; không xuất bản README hay các file dự án khác. Giữ repository public để dùng Pages với gói GitHub Free. Hướng dẫn chính thức: https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages
 
 ## Trải nghiệm
 
@@ -93,7 +93,7 @@ Workflow tự tạo manifest mỗi lần deploy và chỉ đưa các file công 
 ```sh
 mkdir -p _site
 cp index.html random.html styles.css config.js app.js photo-core.js photo-submit.js random.js _site/
-cp -R assets memes _site/
+cp -R assets memes music _site/
 python3 -m http.server 4173 --bind 127.0.0.1 --directory _site
 ```
 

@@ -36,6 +36,7 @@ jobs:
           cp index.html random.html styles.css app.js config.js photo-core.js photo-submit.js random.js _site/
           cp -R assets _site/assets
           cp -R memes _site/memes
+          cp -R music _site/music
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:

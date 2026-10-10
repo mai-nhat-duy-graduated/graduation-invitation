@@ -22,8 +22,6 @@ window.INVITATION = {
   portraitUrl: '',
   // Dán link Google Forms để nhận RSVP. Để trống sẽ hiển thị lời nhắn liên hệ trực tiếp.
   rsvpUrl: '',
-  // Thêm file nhạc bạn có quyền sử dụng, ví dụ: 'assets/music.mp3'.
-  musicUrl: '',
-  // Trình phát YouTube hiện khi khách bấm nút nhạc; musicUrl được ưu tiên nếu có.
-  musicYouTubeId: 'ITjc0EykquI',
+  // Nhạc nền từ thư mục music/, phát khi khách mở thiệp.
+  musicUrl: 'music/Cosmic Echoes.mp3',
 };
