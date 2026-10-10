@@ -15,7 +15,7 @@ Chuẩn bị `_site/` theo phần **Ảnh mẫu và chạy thử** bên dưới 
 Sửa `config.js`: tên, chữ viết tắt, trường, thời gian ISO có múi giờ `+07:00`, địa điểm, link Maps và lời nhắn. Thời gian hiển thị luôn theo Việt Nam dù khách đang ở nước khác. `durationMinutes` là thời lượng dùng khi lưu lịch (mặc định 120 phút, chỉnh theo buổi lễ thực tế).
 
 - **Ảnh cá nhân:** đặt ảnh vào `assets/`, gán `portraitUrl: 'assets/portrait.jpg'`. Khối ảnh chỉ hiện khi có ảnh; nên dùng ảnh WebP/JPEG dưới 500 KB.
-- **Nhạc:** đặt file bạn có quyền sử dụng vào `assets/`, gán `musicUrl: 'assets/music.mp3'`. Nút nhạc chỉ hiện khi có file; khách chủ động nhấn để phát.
+- **Nhạc:** đặt file bạn có quyền sử dụng vào `assets/`, gán `musicUrl: 'assets/music.mp3'`. Hoặc đặt `musicYouTubeId` để dùng video YouTube gốc: nút ♫ mở trình phát nổi, khách có thể nghe khi cuộn trang và đóng để dừng. Video lặp lại; nếu trình duyệt chặn phát tự động, nhấn Play trong trình phát. Không tải file từ YouTube. `musicUrl` được ưu tiên khi có cả hai nguồn.
 - **Xác nhận tham dự:** tạo Google Forms với tên và lựa chọn tham dự, rồi gán link người trả lời vào `rsvpUrl`. Khi chưa có link, thiệp mời khách nhắn trực tiếp; website không tự thu thập hay lưu phản hồi.
 - Thẻ mô tả và nội dung `<noscript>` trong `index.html` là dự phòng cho trình thu thập và thiết bị tắt JavaScript; cập nhật chúng khi thay đổi buổi lễ.
 
@@ -45,12 +45,14 @@ Phong bì tương tác, pháo giấy khi mở, nội dung xuất hiện khi cu�
 
 ## Bản đồ khuôn viên và hướng dẫn gửi xe
 
+Google Maps được nhúng ngay dưới thông tin buổi lễ. `mapsEmbedUrl` trong `config.js` cấu hình bản đồ nhúng (để trống để ẩn); `mapsUrl` giữ link mở ứng dụng để xem đường đi. Khi đổi địa điểm, cập nhật cả hai link.
+
 Phần **Tìm đường, hẹn gặp** dùng một ảnh tĩnh lấy từ bản đồ khuôn viên trên https://discovery.tdtu.edu.vn/. Có 20 điểm đánh dấu và tên khu vực được vẽ cố định trên ảnh, theo đúng tọa độ hotspot của bản đồ trường. Không nhúng website trường, không có trình xem 3D hoặc chuyển động.
 
 - `assets/tdtu-campus-map.jpg`: ảnh đầy đủ **11285 × 6684 pixel**, khoảng **4.2 MB**, ghép từ các mảnh ảnh gốc của trường. Khách chạm vào ảnh hoặc **Xem ảnh bản đồ** để mở ảnh trong tab riêng và phóng to trên điện thoại.
 - `assets/tdtu-campus-map-preview.webp`: ảnh xem trước **1500 × 888 pixel**, khoảng **152 KB**, được tải khi cuộn gần phần bản đồ. Ảnh đầy đủ chỉ tải khi khách mở.
 - Sửa `campusMapUrl` và `campusMapPreviewUrl` trong `config.js` để thay ảnh. `campusMapSource` trỏ đến nguồn trường.
-- `parkingVideoUrl` là video hướng dẫn gửi xe do bạn cung cấp. Trình phát Facebook chỉ tải khi nhấn **Xem hướng dẫn**; đóng khung video sẽ dừng phát. Có link Facebook dự phòng.
+- `parkingVideoUrl` là video hướng dẫn gửi xe do bạn cung cấp. Trình phát Facebook hiển thị ngay trong thẻ **Gửi xe ở đâu?**, tải khi khách cuộn gần video và không tự động phát. Có link Facebook dự phòng.
 
 Các nhãn được tạo bằng `scripts/label-campus-map.py` (Python + Pillow), với dữ liệu tọa độ trong `assets/tdtu-campus-points.json`. Ảnh gốc dùng để tạo lại nhãn được giữ ở `scripts/source/tdtu-campus-map-original.jpg`; file này không được đưa vào bản xuất bản GitHub Pages.
 

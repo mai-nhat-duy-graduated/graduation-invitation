@@ -53,18 +53,21 @@
         <div class="date-card"><span class="eyebrow" id="event-month">THÁNG 10 · 2026</span><span class="event-day" id="event-day">17</span><span id="event-weekday">Thứ Bảy</span><span class="date-card-rule"></span><span id="event-time">10:30 sáng</span><span class="timezone">Giờ Việt Nam (GMT+7)</span></div>
         <div class="venue-card"><span class="eyebrow">LỄ TỐT NGHIỆP</span><h3 data-university>Đại học Tôn Đức Thắng</h3><p id="event-venue"></p><p class="venue-address" id="event-address"></p><div class="event-actions"><a class="button primary" id="maps-link" target="_blank" rel="noopener noreferrer">Xem đường đi <span aria-hidden="true">↗</span></a><button class="text-button" id="calendar-button">Thêm vào lịch <span aria-hidden="true">＋</span></button></div><p class="event-footnote">Mang theo một nụ cười. Mình sẽ đợi bạn ở đó!</p></div>
       </div>
+      <div class="venue-map reveal" id="venue-map" hidden>
+        <iframe id="maps-frame" title="Google Maps — vị trí Đại học Tôn Đức Thắng" width="1060" height="340" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
       <div class="countdown-row reveal"><p id="countdown-label">Cùng đếm ngược<br>đến khoảnh khắc ấy</p><div class="countdown" aria-label="Thời gian còn lại đến lễ tốt nghiệp"><div><strong id="days">00</strong><span>NGÀY</span></div><b>:</b><div><strong id="hours">00</strong><span>GIỜ</span></div><b>:</b><div><strong id="minutes">00</strong><span>PHÚT</span></div><b>:</b><div><strong id="seconds">00</strong><span>GIÂY</span></div></div></div>
     </section>
     <section class="arrival-section" id="arrival" aria-labelledby="arrival-title">
       <div class="section-top reveal"><div><p class="eyebrow">ĐẾN TRƯỜNG THẬT DỄ</p><h2 id="arrival-title">Tìm đường, <em>hẹn gặp.</em></h2><p class="arrival-intro">Xem sơ đồ khuôn viên và hướng dẫn gửi xe để đến buổi lễ thuận tiện hơn nhé.</p></div><span class="section-note">Để cuộc hẹn của mình<br>bắt đầu thật nhẹ nhàng.</span></div>
       <div class="arrival-grid reveal">
         <article class="arrival-card"><span class="arrival-number">01 / KHÁM PHÁ KHUÔN VIÊN</span><a class="campus-image-link" id="campus-preview-link" href="assets/tdtu-campus-map.jpg" target="_blank" rel="noopener noreferrer" aria-label="Mở ảnh bản đồ TDTU độ phân giải cao"><img id="campus-preview" src="assets/tdtu-campus-map-preview.webp" alt="Sơ đồ toàn bộ khuôn viên Đại học Tôn Đức Thắng" width="1500" height="888" loading="lazy" decoding="async"><span class="campus-image-caption">Chạm để xem ảnh lớn ↗</span></a><h3>Bản đồ trường</h3><p>Các khu vực đã được đánh dấu kèm tên trên bản đồ. Chạm vào ảnh để xem nét và dùng hai ngón tay phóng to trên điện thoại.</p><a class="button primary" id="campus-image-open" href="assets/tdtu-campus-map.jpg" target="_blank" rel="noopener noreferrer">Xem ảnh bản đồ <span aria-hidden="true">↗</span></a><a class="arrival-source" id="campus-source" href="https://discovery.tdtu.edu.vn/" target="_blank" rel="noopener noreferrer">Nguồn: Trải nghiệm trực tuyến TDTU ↗</a></article>
-        <article class="arrival-card"><span class="arrival-number">02 / TRƯỚC KHI VÀO TRƯỜNG</span><div class="parking-illustration" aria-hidden="true"><b>P</b><span>↗</span><i></i></div><h3>Gửi xe ở đâu?</h3><p>Xem video hướng dẫn chỗ gửi xe trước khi đến. Hẹn bạn ở trong khuôn viên trường!</p><button class="button primary" id="parking-button" aria-expanded="false" aria-controls="parking-panel">Xem hướng dẫn <span aria-hidden="true">▷</span></button><a class="arrival-source" id="parking-source" href="https://www.facebook.com/watch/?v=1314719846733240" target="_blank" rel="noopener noreferrer">Mở video trên Facebook ↗</a></article>
-      </div>
-      <div class="arrival-panel parking-panel" id="parking-panel" hidden>
-        <div class="panel-heading"><h3 id="parking-panel-title" tabindex="-1">Video hướng dẫn gửi xe</h3><button class="text-button" id="parking-close">Đóng video ×</button></div>
-        <iframe id="parking-frame" title="Video Facebook hướng dẫn chỗ gửi xe" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share; fullscreen" allowfullscreen loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-presentation" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-        <p class="panel-credit">Nếu video không hiển thị, <a id="parking-fallback" href="https://www.facebook.com/watch/?v=1314719846733240" target="_blank" rel="noopener noreferrer">mở video trực tiếp trên Facebook ↗</a>.</p>
+        <article class="arrival-card"><span class="arrival-number">02 / TRƯỚC KHI VÀO TRƯỜNG</span><h3>Gửi xe ở đâu?</h3><p>Xem video hướng dẫn chỗ gửi xe trước khi đến. Hẹn bạn ở trong khuôn viên trường!</p>
+          <div class="parking-video" id="parking-video">
+            <iframe id="parking-frame" src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D1314719846733240&amp;show_text=false&amp;width=420" title="Video Facebook hướng dẫn chỗ gửi xe" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share; fullscreen" allowfullscreen loading="lazy" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-presentation" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          </div>
+          <a class="arrival-source" id="parking-source" href="https://www.facebook.com/watch/?v=1314719846733240" target="_blank" rel="noopener noreferrer">Không xem được video? Mở trên Facebook ↗</a>
+        </article>
       </div>
     </section>
     <section class="memory-section reveal" id="memory" hidden><div class="portrait-frame"><img id="portrait" alt="Ảnh kỷ niệm của người tốt nghiệp" loading="lazy"></div><div><p class="eyebrow">MỘT THỜI ĐỂ NHỚ</p><h2>Những năm tháng<br><em>thật đẹp.</em></h2><p>Thanh xuân có những người bạn, những bài học, và cả những giấc mơ. Cảm ơn bạn đã cùng mình đi qua một phần hành trình này.</p></div></section>
@@ -87,6 +90,11 @@
   </main>
   <footer><a class="brand" href="#"><span class="brand-mark" data-initials>ND</span><span data-graduate>Mai Nhật Duy</span></a><span>Khép lại một hành trình, giữ lại những yêu thương.</span><span>MADE WITH ♡ · 2026</span></footer>
   <button class="music-toggle" id="music-toggle" aria-label="Bật nhạc nền" aria-pressed="false" hidden>♫</button>
+  <aside class="music-player" id="music-player" aria-labelledby="music-title" hidden>
+    <div class="music-player-heading"><span id="music-title">Một chút nhạc cho ngày vui</span><button id="music-close" aria-label="Đóng trình phát và dừng nhạc">×</button></div>
+    <iframe id="music-frame" title="Nhạc cho ngày tốt nghiệp — YouTube" width="320" height="180" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <a id="music-source" target="_blank" rel="noopener noreferrer">Mở bài nhạc trên YouTube ↗</a>
+  </aside>
   <div class="confetti-layer" id="confetti-layer" aria-hidden="true"></div>
   <div class="toast" id="toast" role="status"></div>
   <noscript><p class="noscript-note">Bật JavaScript để xem lời mời cá nhân hóa và đồng hồ đếm ngược. Buổi lễ: 10:30 ngày 17/10/2026, Đại học Tôn Đức Thắng.</p></noscript>

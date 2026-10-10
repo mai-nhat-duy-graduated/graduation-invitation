@@ -11,6 +11,8 @@ window.INVITATION = {
   venue: 'Đại học Tôn Đức Thắng',
   address: 'Xem vị trí buổi lễ trên Google Maps',
   mapsUrl: 'https://maps.app.goo.gl/8xeQMz9v8cLHcJTW7',
+  // Link nhúng Google Maps của cùng địa điểm; để trống nếu muốn ẩn bản đồ.
+  mapsEmbedUrl: 'https://www.google.com/maps?q=Ton+Duc+Thang+University&ll=10.7319314,106.6993418&z=16&output=embed',
   campusMapUrl: 'assets/tdtu-campus-map.jpg',
   campusMapPreviewUrl: 'assets/tdtu-campus-map-preview.webp',
   campusMapSource: 'https://discovery.tdtu.edu.vn/',
@@ -22,4 +24,6 @@ window.INVITATION = {
   rsvpUrl: '',
   // Thêm file nhạc bạn có quyền sử dụng, ví dụ: 'assets/music.mp3'.
   musicUrl: '',
+  // Trình phát YouTube hiện khi khách bấm nút nhạc; musicUrl được ưu tiên nếu có.
+  musicYouTubeId: 'ITjc0EykquI',
 };

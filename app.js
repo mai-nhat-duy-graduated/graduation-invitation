@@ -25,6 +25,11 @@
   const mapsUrl = safeUrl(config.mapsUrl);
   if (mapsUrl) $('#maps-link').href = mapsUrl;
   else $('#maps-link').hidden = true;
+  const mapsEmbedUrl = safeUrl(config.mapsEmbedUrl);
+  if (mapsEmbedUrl) {
+    $('#maps-frame').src = mapsEmbedUrl;
+    $('#venue-map').hidden = false;
+  }
   if (validDate) {
     $('#event-month').textContent = `THÁNG ${format({ month: 'numeric' })} · ${format({ year: 'numeric' })}`;
     $('#event-day').textContent = format({ day: '2-digit' });
@@ -130,39 +135,19 @@
   if (campusSource) $('#campus-source').href = campusSource;
   if (parkingUrl) {
     $('#parking-source').href = parkingUrl;
-    $('#parking-fallback').href = parkingUrl;
-  }
-  function toggleArrival(kind, url, open) {
-    const panel = $(`#${kind}-panel`);
-    const frame = $(`#${kind}-frame`);
-    const button = $(`#${kind}-button`);
-    panel.hidden = !open;
-    button.setAttribute('aria-expanded', String(open));
-    if (open) {
-      if (!frame.getAttribute('src')) frame.src = url;
-      panel.scrollIntoView({ behavior: reducedMotion ? 'instant' : 'smooth', block: 'start' });
-      $(`#${kind}-panel-title`).focus({ preventScroll: true });
-    } else {
-      if (kind === 'parking') frame.removeAttribute('src');
-      button.focus({ preventScroll: true });
-    }
-  }
-  $('#parking-button').addEventListener('click', () => {
-    if (!parkingUrl) return;
     const embed = new URL('https://www.facebook.com/plugins/video.php');
     embed.searchParams.set('href', parkingUrl);
     embed.searchParams.set('show_text', 'false');
-    embed.searchParams.set('width', '960');
-    toggleArrival('parking', embed.href, $('#parking-panel').hidden);
-  });
-  $('#parking-close').addEventListener('click', () => toggleArrival('parking', null, false));
+    embed.searchParams.set('width', '420');
+    $('#parking-frame').src = embed.href;
+  } else {
+    $('#parking-frame').removeAttribute('src');
+    $('#parking-video').hidden = true;
+    $('#parking-source').hidden = true;
+  }
   if (!campusUrl) {
     $('#campus-image-open').hidden = true;
     $('#campus-preview-link').hidden = true;
-  }
-  if (!parkingUrl) {
-    $('#parking-button').hidden = true;
-    $('#parking-source').hidden = true;
   }
   const portrait = safeUrl(config.portraitUrl);
   if (portrait) {
@@ -208,6 +193,35 @@
     button.addEventListener('click', async () => {
       if (!music.paused) { music.pause(); musicState(false); return; }
       try { await music.play(); musicState(true); } catch { musicState(false); toast('Chưa phát được nhạc. Bạn thử lại nhé.'); }
+    });
+  } else if (/^[A-Za-z0-9_-]{11}$/.test(config.musicYouTubeId || '')) {
+    const button = $('#music-toggle');
+    const panel = $('#music-player');
+    const frame = $('#music-frame');
+    const videoId = config.musicYouTubeId;
+    const embed = new URL(`https://www.youtube-nocookie.com/embed/${videoId}`);
+    embed.searchParams.set('autoplay', '1');
+    embed.searchParams.set('playsinline', '1');
+    embed.searchParams.set('loop', '1');
+    embed.searchParams.set('playlist', videoId);
+    $('#music-source').href = `https://www.youtube.com/watch?v=${videoId}`;
+    button.hidden = false;
+    button.removeAttribute('aria-pressed');
+    button.setAttribute('aria-controls', 'music-player');
+    button.setAttribute('aria-expanded', 'false');
+    button.setAttribute('aria-label', 'Mở nhạc nền trên YouTube');
+    function toggleMusicPlayer(open) {
+      panel.hidden = !open;
+      button.setAttribute('aria-expanded', String(open));
+      button.setAttribute('aria-label', open ? 'Đóng trình phát và dừng nhạc' : 'Mở nhạc nền trên YouTube');
+      button.textContent = open ? '×' : '♫';
+      if (open) frame.src = embed.href;
+      else { frame.removeAttribute('src'); button.focus({ preventScroll: true }); }
+    }
+    button.addEventListener('click', () => toggleMusicPlayer(panel.hidden));
+    $('#music-close').addEventListener('click', () => toggleMusicPlayer(false));
+    panel.addEventListener('keydown', event => {
+      if (event.key === 'Escape') toggleMusicPlayer(false);
     });
   }
 })();
