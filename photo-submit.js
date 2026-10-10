@@ -1,7 +1,7 @@
 (() => {
   'use strict';
   const form = document.querySelector('#photo-form');
-  const name = document.querySelector('#photo-name');
+  const guest = new URLSearchParams(location.search).get('name')?.trim().slice(0, 80) || 'bạn';
   const file = document.querySelector('#photo-file');
   const description = document.querySelector('#photo-description');
   const status = document.querySelector('#photo-status');
@@ -11,7 +11,6 @@
   const change = document.querySelector('#photo-change');
   const settings = PhotoIdeas.settings();
   let busy = false, previewUrl;
-  name.value = new URLSearchParams(location.search).get('name')?.trim().slice(0, 80) || '';
   if (!settings) {
     send.disabled = true;
     status.textContent = 'Chỗ gửi ảnh chưa sẵn sàng. Bạn nhắn ảnh trực tiếp cho Duy nhé.';
@@ -24,7 +23,7 @@
     clearPreview();
     const image = file.files[0];
     if (!image) return;
-    const error = PhotoIdeas.validate(name.value || 'Bạn', '', image);
+    const error = PhotoIdeas.validate(guest, '', image);
     if (error) { status.textContent = error; file.value = ''; return; }
     previewUrl = URL.createObjectURL(image); preview.src = previewUrl; wrap.hidden = false;
     status.textContent = settings ? '' : 'Chỗ gửi ảnh chưa sẵn sàng. Bạn nhắn ảnh trực tiếp cho Duy nhé.';
@@ -34,10 +33,10 @@
   form.addEventListener('submit', async event => {
     event.preventDefault();
     if (busy || !settings) return;
-    const error = PhotoIdeas.validate(name.value, description.value, file.files[0]);
+    const error = PhotoIdeas.validate(guest, description.value, file.files[0]);
     if (error) { status.textContent = error; return; }
     const data = new FormData();
-    data.set('name', name.value.trim()); data.set('description', description.value.trim()); data.set('file', file.files[0]);
+    data.set('name', guest); data.set('description', description.value.trim()); data.set('file', file.files[0]);
     busy = true;
     const controls = [...form.querySelectorAll('input, textarea, button')];
     controls.forEach(control => { control.disabled = true; });

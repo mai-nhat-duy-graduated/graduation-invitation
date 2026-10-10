@@ -40,8 +40,8 @@ test('manifest contains every supported image with encoded relative URL', () => 
 });
 function submissionHarness(fetcher) {
   const elements = {};
-  for (const id of ['photo-form','photo-name','photo-file','photo-description','photo-status','photo-send','photo-preview','photo-preview-wrap','photo-change']) {
-    elements[id] = {value:'',files:[],disabled:false,hidden:true,textContent:'',events:{},addEventListener(event,fn){this.events[event]=fn;},removeAttribute(){},querySelectorAll(){return [elements['photo-name'],elements['photo-file'],elements['photo-description'],elements['photo-send']];}};
+  for (const id of ['photo-form','photo-file','photo-description','photo-status','photo-send','photo-preview','photo-preview-wrap','photo-change']) {
+    elements[id] = {value:'',files:[],disabled:false,hidden:true,textContent:'',events:{},addEventListener(event,fn){this.events[event]=fn;},removeAttribute(){},querySelectorAll(){return [elements['photo-file'],elements['photo-description'],elements['photo-send']];}};
   }
   const context = { document:{querySelector:selector=>elements[selector.slice(1)]},location:{search:'?name=Minh'},URLSearchParams,URL,FormData,AbortSignal,PhotoIdeas:{...global.PhotoIdeas, settings:()=>({url:'https://backend.example',key:'public'})},fetch:fetcher };
   vm.runInNewContext(fs.readFileSync('photo-submit.js','utf8'),context);
@@ -51,8 +51,7 @@ function submissionHarness(fetcher) {
 }
 test('submission prevents concurrent requests and clears image only after success', async () => {
   let finish, calls=0;
-  const elements = submissionHarness(() => {calls++; return new Promise(resolve=>{finish=resolve;});});
-  assert.equal(elements['photo-name'].value,'Minh');
+  const elements = submissionHarness((url, options) => {assert.equal(options.body.get('name'),'Minh'); calls++; return new Promise(resolve=>{finish=resolve;});});
   const submit=elements['photo-form'].events.submit;
   const first=submit({preventDefault(){}});
   await submit({preventDefault(){}});

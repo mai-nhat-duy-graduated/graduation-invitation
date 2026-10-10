@@ -58,7 +58,7 @@ Các nhãn được tạo bằng `scripts/label-campus-map.py` (Python + Pillow)
 
 ## Gửi ảnh kiểu chụp và random
 
-Khách gửi **tên + một ảnh bắt buộc**, mô tả tùy chọn ngay trên thiệp. Tên được điền từ `?name=` và có thể sửa. Ảnh JPEG/PNG/WebP tối đa 5 MB; mô tả tối đa 500 ký tự. Các bài gửi được lưu riêng trên Supabase, không lưu vào GitHub hay folder `memes/`.
+Khách gửi **một ảnh bắt buộc**, mô tả tùy chọn ngay trên thiệp. Tên người gửi tự lấy từ tên người nhận trên thiệp (`?name=`), không cần nhập lại; link không có tên dùng tên mặc định “bạn” như trên thiệp. Ảnh JPEG/PNG/WebP tối đa 5 MB; mô tả tối đa 500 ký tự. Các bài gửi được lưu riêng trên Supabase, không lưu vào GitHub hay folder `memes/`.
 
 Duy mở `random.html`, đăng nhập với tên `duy` (hoặc email Supabase) và mật khẩu tài khoản Auth, rồi random chung từ **19 ảnh mẫu hiện tại trong `memes/` + các ảnh bạn bè gửi**. Mỗi ảnh có cơ hội được chọn bằng nhau. Lịch sử đã rút lưu trên từng trình duyệt/tài khoản; tải lại trang vẫn giữ lịch sử, không đồng bộ thiết bị. Khi hết lượt, bấm **Bắt đầu lượt mới**. **Tải lại nguồn** lấy bài gửi mới và giữ các ID đã rút. Nếu Supabase không tải được dữ liệu bạn bè, trang báo lỗi và vẫn cho dùng ảnh mẫu sau khi đăng nhập.
 

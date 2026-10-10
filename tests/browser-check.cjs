@@ -6,7 +6,7 @@ const assert=require('node:assert/strict');const fs=require('node:fs');
  const originalConfig=fs.readFileSync('config.js','utf8');
  await page.route('**/config.js',r=>r.fulfill({contentType:'text/javascript',body:originalConfig+";window.INVITATION.supabaseUrl='';window.INVITATION.supabasePublishableKey='';"}));
  await page.goto(base+'/?name=Minh');await page.locator('#photo-ideas').scrollIntoViewIfNeeded();
- assert.equal(await page.locator('#photo-name').inputValue(),'Minh');assert.equal(await page.locator('#photo-send').isDisabled(),true);
+ assert.equal(await page.locator('#photo-name').count(),0);assert.equal(await page.locator('#photo-send').isDisabled(),true);
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
  await page.screenshot({path:require('node:path').join(require('node:os').tmpdir(),'graduation-photo-form.png')});
  await page.unroute('**/config.js');
