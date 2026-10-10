@@ -48,7 +48,7 @@ Google Maps được nhúng ngay dưới thông tin buổi lễ. `mapsEmbedUrl` 
 
 Phần **Thông tin cần thiết** dùng một ảnh tĩnh lấy từ bản đồ khuôn viên trên https://discovery.tdtu.edu.vn/. Có 20 điểm đánh dấu và tên khu vực được vẽ cố định trên ảnh, theo đúng tọa độ hotspot của bản đồ trường. Không nhúng website trường, không có trình xem 3D hoặc chuyển động.
 
-- `assets/tdtu-campus-map.jpg`: ảnh đầy đủ **11285 × 6684 pixel**, khoảng **4.2 MB**, ghép từ các mảnh ảnh gốc của trường. Khách chạm vào ảnh hoặc **Xem ảnh bản đồ** để mở ảnh trong tab riêng và phóng to trên điện thoại.
+- `assets/tdtu-campus-map.jpg`: ảnh đầy đủ **11285 × 6684 pixel**, khoảng **4.2 MB**, ghép từ các mảnh ảnh gốc của trường. Khách chạm vào ảnh để mở ảnh trong tab riêng và phóng to trên điện thoại.
 - `assets/tdtu-campus-map-preview.webp`: ảnh xem trước **1500 × 888 pixel**, khoảng **152 KB**, được tải khi cuộn gần phần bản đồ. Ảnh đầy đủ chỉ tải khi khách mở.
 - Sửa `campusMapUrl` và `campusMapPreviewUrl` trong `config.js` để thay ảnh. `campusMapSource` trỏ đến nguồn trường.
 - `parkingVideoUrl` là video hướng dẫn gửi xe do bạn cung cấp. Trình phát Facebook hiển thị ngay trong thẻ **Gửi xe ở đâu?**, tải khi khách cuộn gần video và không tự động phát. Có link Facebook dự phòng.

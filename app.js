@@ -113,7 +113,6 @@
   const campusPreview = safeUrl(config.campusMapPreviewUrl);
   if (campusUrl) {
     $('#campus-preview-link').href = campusUrl;
-    $('#campus-image-open').href = campusUrl;
   }
   if (campusPreview) $('#campus-preview').src = campusPreview;
   const parkingUrl = safeUrl(config.parkingVideoUrl);
@@ -131,7 +130,6 @@
     $('#parking-source').hidden = true;
   }
   if (!campusUrl) {
-    $('#campus-image-open').hidden = true;
     $('#campus-preview-link').hidden = true;
   }
   const portrait = safeUrl(config.portraitUrl);
