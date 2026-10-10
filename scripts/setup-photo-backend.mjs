@@ -24,6 +24,12 @@ async function main() {
     body: JSON.stringify({ query }), signal: AbortSignal.timeout(60000),
   });
   if (!response.ok) throw new Error(`Thiết lập database thất bại (HTTP ${response.status}). Kiểm tra token, project và UID có tồn tại trong Authentication → Users.`);
+  const authConfig = await fetch(`https://api.supabase.com/v1/projects/${project}/config/auth`, {
+    method: 'PATCH', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ disable_signup: true }), signal: AbortSignal.timeout(30000),
+  });
+  if (!authConfig.ok) throw new Error(`Không tắt được đăng ký công khai (HTTP ${authConfig.status}).`);
+  console.log('Đã tắt đăng ký tài khoản công khai.');
   console.log(process.env.PHOTO_ADMIN_UID ? 'Đã tạo bảng, bucket riêng tư và cấp quyền cho UID đã cấu hình.' : 'Đã tạo bảng và bucket riêng tư. Chưa cấp quyền admin: cần tạo tài khoản Auth và đặt PHOTO_ADMIN_UID.');
 }
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

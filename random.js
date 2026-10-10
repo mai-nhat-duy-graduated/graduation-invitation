@@ -89,7 +89,7 @@
     finally { $('#login-button').disabled = false; }
   });
   $('#logout').addEventListener('click', () => {
-    request('/auth/v1/logout', { method: 'POST' }).catch(() => {});
+    request('/auth/v1/logout?scope=local', { method: 'POST' }).catch(() => {});
     lock('Đã đăng xuất trên thiết bị này.');
   });
   $('#reload').addEventListener('click', loadSources);
