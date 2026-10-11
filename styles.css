@@ -188,8 +188,8 @@ button.envelope-seal, .envelope-seal {
 .sky-nav a:hover { text-decoration: underline; text-underline-offset: 6px; }
 .sky-hero-copy { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 100px 0 90px; }
 .sky-hero-copy .eyebrow { font-size: 9px; letter-spacing: 2.2px; margin-bottom: 26px; }
-.sky-hero-copy h1 { font: 400 clamp(68px, 8.4vw, 128px)/.98 'DM Sans', var(--sans); letter-spacing: -.065em; margin: 0; text-shadow: 0 3px 40px #12375415; }
-.sky-hero-copy h1 em { display: inline-block; font: italic .96em/1.14 var(--serif); letter-spacing: -.075em; }
+.sky-hero-copy h1 { font: 700 clamp(68px, 8.4vw, 128px)/.98 var(--sans); letter-spacing: -.02em; margin: 0; text-shadow: 0 3px 40px #12375415; }
+.sky-hero-copy h1 em { display: inline-block; font: italic 400 .96em/1.14 var(--serif); letter-spacing: -.03em; }
 .sky-hero-copy h1:focus { outline: none; }
 .hero-period { color: #d1e0ed; }
 .hero-dedication { font-size: 12px; line-height: 1.9; margin: 34px 0 0; color: #f1f5fa; }
