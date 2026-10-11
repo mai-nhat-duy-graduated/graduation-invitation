@@ -22,4 +22,5 @@ window.INVITATION = {
   portraitUrl: '',
   // Nhạc nền từ thư mục music/, phát khi khách mở thiệp.
   musicUrl: 'music/Cosmic Echoes.mp3',
+  musicVolume: 0.15,
 };

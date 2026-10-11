@@ -169,7 +169,7 @@
   }
   const musicUrl = safeUrl(config.musicUrl);
   if (musicUrl) {
-    const music = new Audio(musicUrl); music.loop = true; music.preload = 'none'; music.volume = .35;
+    const music = new Audio(musicUrl); music.loop = true; music.preload = 'none'; music.volume = Number.isFinite(config.musicVolume) ? config.musicVolume : .15;
     const button = $('#music-toggle'); button.hidden = false;
     function musicState(playing) {
       button.setAttribute('aria-pressed', String(playing));
