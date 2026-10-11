@@ -90,7 +90,9 @@
       greeting,
       envelopeGreeting,
       lead: `${self} sắp tốt nghiệp rồi${polite ? ' ạ' : ''}!`,
-      message: `${self} mời ${you} đến chung vui và chụp vài tấm ảnh kỷ niệm trong ngày tốt nghiệp.`,
+      message: pronounStyle === 'tao-may'
+        ? 'Mày có thời gian tới chụp vài tấm ảnh kỷ niệm ngày tốt nghiệp với tao nha!'
+        : `${self} mời ${you} đến chung vui và chụp vài tấm ảnh kỷ niệm trong ngày tốt nghiệp.`,
       closing: `Nếu đến được, ${you} nhắn ${selfLower} biết hen!`,
       signoff: `Hẹn gặp ${you} ngày hôm đó ♡`,
       photoTitle: role === 'em'

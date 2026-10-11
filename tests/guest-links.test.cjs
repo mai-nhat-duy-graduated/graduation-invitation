@@ -51,7 +51,7 @@ test('friend pronouns support Tao-mày, Tui-chú and Tui-Tên with full-page wor
   assert.equal(taoMay.greeting,'Lê Duy');
   assert.equal(taoMay.envelopeGreeting,'Lê Duy');
   assert.equal(taoMay.lead,'Tao sắp tốt nghiệp rồi!');
-  assert.equal(taoMay.message,'Tao mời mày đến chung vui và chụp vài tấm ảnh kỷ niệm trong ngày tốt nghiệp.');
+  assert.equal(taoMay.message,'Mày có thời gian tới chụp vài tấm ảnh kỷ niệm ngày tốt nghiệp với tao nha!');
   assert.equal(taoMay.closing,'Nếu đến được, mày nhắn tao biết hen!');
   assert.equal(taoMay.signoff,'Hẹn gặp mày ngày hôm đó ♡');
   assert.equal(taoMay.photoTitle,'Mày muốn chụp kiểu nào cùng tao?');
